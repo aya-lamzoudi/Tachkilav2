@@ -199,51 +199,6 @@ function validateeditnbr() {
 }
 
 
-// add player
-
-// function addplayer(player) {
-//     let newplayer = document.querySelector("#playerlist").cloneNode(true);
-//     newplayer.querySelector(".player-number").innerText = player.numero;
-//     newplayer.querySelector(".player-name").innerText = player.nom;
-//     newplayer.querySelector(".player-poste").innerText = player.post;
-//     newplayer.querySelector("select").value = player.position;
-
-//     //add color
-
-//     if (player.post == "Attaquant") {
-//         newplayer.querySelector(".player-card").classList.toggle("border-[#d75241]");
-//         newplayer.querySelector(".player-number").classList.toggle("border-[#d75241]");
-//         newplayer.querySelector(".player-poste").classList.toggle("text-[#d75241]");
-//     } else if (player.post == "Milieu") {
-//         newplayer.querySelector(".player-card").classList.toggle("border-[#20d244]");
-//         newplayer.querySelector(".player-number").classList.toggle("border-[#20d244]");
-//         newplayer.querySelector(".player-poste").classList.toggle("text-[#20d244]");
-//     } else if (player.post == "Defenseur") {
-//         newplayer.querySelector(".player-card").classList.toggle("border-[#3AC8EF]");
-//         newplayer.querySelector(".player-number").classList.toggle("border-[#3AC8EF]");
-//         newplayer.querySelector(".player-poste").classList.toggle("text-[#3AC8EF]");
-//     } else if (player.post == "Gardien") {
-//         newplayer.querySelector(".player-card").classList.toggle("border-orange-400");
-//         newplayer.querySelector(".player-number").classList.toggle("border-orange-400");
-//         newplayer.querySelector(".player-poste").classList.toggle("text-orange-400");
-//     }
-//     /////
-
-//     newplayer.classList.toggle("hidden");
-//     document.querySelector(".side-container").appendChild(newplayer);
-
-//     //reset the values
-//     document.querySelector("#name").value = "";
-//     document.querySelector("#nbr").value = "";
-//     document.querySelectorAll('input[name="poste"]').forEach(radio => {
-//         radio.checked = false;
-//     })
-
-//     document.querySelector("#tachkila-nbr").innerText = players.length;
-
-
-
-// }
 function addplayer(player) {
     let newplayer = document.querySelector("#playerlist").cloneNode(true);
     newplayer.querySelector(".player-number").innerText = player.numero;
@@ -255,18 +210,42 @@ function addplayer(player) {
         newplayer.querySelector(".player-card").classList.toggle("border-[#d75241]");
         newplayer.querySelector(".player-number").classList.toggle("border-[#d75241]");
         newplayer.querySelector(".player-poste").classList.toggle("text-[#d75241]");
+        newplayer.querySelector("select").innerHTML = `
+                   <option value="bench" selected>Sur le banc</option>
+                   <option value="BU1">BU - Buteur 1</option>
+                   <option value="BU2">BU - Buteur 2</option>
+        `
     } else if (player.post == "Milieu") {
         newplayer.querySelector(".player-card").classList.toggle("border-[#20d244]");
         newplayer.querySelector(".player-number").classList.toggle("border-[#20d244]");
         newplayer.querySelector(".player-poste").classList.toggle("text-[#20d244]");
+        newplayer.querySelector("select").innerHTML = `
+                  <option value="bench" selected>Sur le banc</option>
+                  <option value="MG">MG - Milieu gauche</option>
+                  <option value="MC1">MC - Milieu central 1</option>
+                  <option value="MC2">MC - Milieu central 2</option>
+                  <option value="MD">MD - Milieu droit</option>
+        `
     } else if (player.post == "Defenseur") {
         newplayer.querySelector(".player-card").classList.toggle("border-[#3AC8EF]");
         newplayer.querySelector(".player-number").classList.toggle("border-[#3AC8EF]");
         newplayer.querySelector(".player-poste").classList.toggle("text-[#3AC8EF]");
+        newplayer.querySelector("select").innerHTML = `
+                  <option value="bench" selected>Sur le banc</option>
+                  <option value="DG">DG - Défenseur gauche</option>
+                  <option value="DC1">DC - Défenseur central 1</option>
+                  <option value="DC2">DC - Défenseur central 2</option>
+                  <option value="DD">DD - Défenseur droit</option>
+                 
+        `
     } else if (player.post == "Gardien") {
         newplayer.querySelector(".player-card").classList.toggle("border-orange-400");
         newplayer.querySelector(".player-number").classList.toggle("border-orange-400");
         newplayer.querySelector(".player-poste").classList.toggle("text-orange-400");
+        newplayer.querySelector("select").innerHTML = `
+                  <option value="bench" selected>Sur le banc</option>
+                  <option value="GB">GB - Gardien</option>
+        `
     }
     /////
 
@@ -331,6 +310,7 @@ function addplayer(player) {
                         path.querySelector(".player-name-position").innerText = playerCard.querySelector(".player-name").innerText;
                         path.querySelector(".number").innerText = playerCard.querySelector(".player-number").innerText;
                         path.querySelector(".number").classList.remove("hidden");
+
                         showsuccess("the player is being placed in the pitch with seccess");
 
 

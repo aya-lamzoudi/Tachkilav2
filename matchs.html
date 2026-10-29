@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="script.js" defer></script> -->
+    <title>Tachkila</title>
+</head>
+
+<body class="bg-[#0F172A]">
+
+    <!-- start header -->
+    <header>
+        <div
+            class="header-container flex justify-between items-center px-5 max-[767px]:p-1 h-[50px] bg-[#1E293B] border-b border-solid border-gray-500">
+            <div class=" logo flex gap-2  items-center">
+                <img src="img/logo.jpg" alt="logo" class="w-[30px] h-[30px] rounded-full">
+
+                <p class="text-gray-50 font-bold ">TACHKILA</p>
+            </div>
+
+            <nav class="navbar w-[30%] p-3 border border-solid border-[#ffffff] rounded-full ">
+                <ul class="flex w-[100%] justify-evenly max-[767px]:grid max-[767px]:grid-cols-2 max-[767px]:gap-1 ">
+                    <li class="text-xs flex">
+                        <a href="index.html" class="text-xs hover:text-emerald-600 font-bold">Effectif</a>
+                    </li>
+                    <li class="text-xs font-bold hover:text-emerald-600 ">
+                        <a href="composition.html">composition</a>
+                    </li>
+                    <li class="text-xs font-bold text-emerald-600 hover:text-emerald-600">
+                        <a href="matchs.html">matches</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="position-legend">
+                <ul class="flex gap-2 max-[767px]:grid max-[767px]:grid-cols-2 max-[767px]:gap-1 ">
+                    <li class="text-xs text-orange-400 flex gap-1">
+                        <span class="w-2 h-2 bg-orange-400 rounded-full self-center"></span>GB
+                    </li>
+                    <li class="text-xs text-[#3AC8EF] flex gap-1">
+                        <span class="w-2 h-2 bg-[#3AC8EF] rounded-full self-center"></span>DEF
+                    </li>
+                    <li class="text-xs text-[#20D244] flex gap-1">
+                        <span class="w-2 h-2 bg-[#20D244] rounded-full self-center"></span>MIL
+                    </li>
+                    <li class="text-xs text-[#D75241] flex gap-1">
+                        <span class="w-2 h-2 bg-[#D75241] rounded-full self-center"></span>ATT
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </header>
+    <!-- end header -->
+    <!-- start main section -->
+
+
+    <main class="min-h-screen bg-[#0F172A] text-white">
+        <div class="matches-page mx-4 flex flex-col gap-6 py-5 md:mx-10">
+
+            <section class="header-matches flex shrink-1 justify-between">
+                <div class="title">
+                    <h2 class="font-bold text-3xl">Matchs</h2>
+                    <p class="text-slate-400">Calendrier et resultats de la saison 2026/1027</p>
+                </div>
+                <button type="button" id="add-match"
+                    class="add-match-btn bg-[#1eba5f] text-gray-50 lg:w-[250px] lg:h-[30px] rounded-[10px] mt-[15px] mb-[10px] font-bold md:w-[400px]  md:self-center">
+                    + Ajouter un Match
+                </button>
+            </section>
+
+            <!-- Barre de filtres et recherche -->
+            <section
+                class="matches-result flex flex-col gap-3 rounded-2xl border border-slate-700 bg-[#1E293B] p-4 md:flex-row md:items-center">
+                <div class="match-filters flex items-center gap-1 rounded-xl bg-[#0F172A] p-1">
+                    <button type="button" id="filter-all"
+                        class="match-filter btn-active rounded-lg bg-green-600 px-4 py-2 font-bold">
+                        Tous <span id="count-all" class="ml-1 rounded bg-[#064E3B] px-2">8</span>
+                    </button>
+                    <button type="button" id="filter-upcoming"
+                        class="match-filter rounded-lg px-4 py-2 font-bold hover:bg-slate-800">
+                        À venir <span id="count-upcoming" class="ml-1 rounded bg-slate-900 px-2">2</span>
+                    </button>
+                    <button type="button" id="filter-played"
+                        class="match-filter rounded-lg px-4 py-2 font-bold hover:bg-slate-800">
+                        Joués <span id="count-played" class="ml-1 rounded bg-slate-900 px-2">6</span>
+                    </button>
+                </div>
+
+                <div
+                    class="match-search flex h-12 flex-1 items-center rounded-xl border border-slate-600 bg-[#0F172A] px-4">
+                    <input type="search" id="search-add" name="search-add"
+                        class="h-full w-full text-white outline-none placeholder:text-slate-500"
+                        placeholder="Rechercher un adversaire...">
+                </div>
+            </section>
+
+            <!-- Liste des matchs -->
+            <section id="matches-list" class="matches-list flex flex-col gap-5" aria-label="Liste des matchs">
+
+                <!-- Match  -->
+                <article
+                    class="match-card flex flex-col gap-5 rounded-2xl border border-slate-700 bg-[#1E293B] p-5 md:flex-row md:items-center md:justify-between">
+                    <div class="match-details flex min-w-0 items-center gap-5">
+                        <div
+                            class="match-date flex min-h-[125px] w-[100px] flex-col items-center justify-center rounded-xl bg-[#0F172A] text-center">
+                            <span class="date-day-name text-sm font-bold text-blue-300">SAM</span>
+                            <span class="date-day text-3xl font-bold">17</span>
+                            <span class="date-month text-sm font-bold">OCT</span>
+                            <span class="date-time mt-1 text-sm text-slate-400">16:30</span>
+                        </div>
+                        <div class="match-info min-w-0">
+                            <span
+                                class="match-status rounded-lg bg-slate-700 px-3 py-1 text-sm font-semibold text-slate-300">
+                                Extérieur</span>
+                            <h2 class="match-title mt-2 text-xl font-bold">Racing Cèdre vs Atlas FC</h2>
+                            <p class="match-location mt-2 flex items-center gap-2 text-slate-400">
+                                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                <span>Complexe Al Amal</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="match-result-area flex flex-wrap items-center justify-end gap-4">
+                        <div class="match-result flex items-center gap-3">
+                            <span class="match-score text-4xl font-extrabold text-slate-200">1 – 1</span>
+                            <span
+                                class="match-status rounded-lg bg-slate-700 px-3 py-1 text-sm font-bold text-slate-300">Nul</span>
+                            <button type="button"
+                                class="edit-score-btn text-sm font-bold text-blue-300 hover:text-blue-200">Modifier
+                                le score</button>
+                        </div>
+                        <div class="match-actions flex items-center gap-4">
+                            <button type="button"
+                                class="tachkila-btn rounded-xl border border-slate-600 px-4 py-2 font-bold hover:bg-slate-700">Voir
+                                la composition</button>
+                            <button type="button" class="edit-match-btn p-2 text-slate-400 hover:text-green-400"><i
+                                    class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                            <button type="button" class="delete-match-btn p-2 text-slate-400 hover:text-red-400"><i
+                                    class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+
+            </section>
+
+
+            <!-- message de conformation -->
+            <section id="confirm"
+                class="supp hidden fixed inset-0 z-2 flex items-center justify-center bg-black/70 p-4  ">
+
+                <div
+                    class=" flex flex-col justify-center items-center w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-900 p-4">
+
+                    <!-- Header -->
+                    <div class="mb-6 flex items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">
+                                message de confirmation:
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div id="confirmation" aria-labelledby="confirmText"
+                        class=" w-max flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border-2 border-[#D75241] bg-[#03151bf2] px-6 py-4 shadow-2xl backdrop-blur-sm">
+                        <p id="confirmText" class="font-semibold text-white"></p>
+                        <div class="flex flex-wrap justify-center gap-3 text-[12px]">
+                            <button id="cancelDelete" type="button"
+                                class="rounded-xl bg-slate-700 px-5 py-2.5 font-semibold transition hover:bg-slate-600">Annuler</button>
+                            <button id="confirmDelete" type="button"
+                                class="rounded-xl bg-[#D75241] px-5 py-2.5 font-bold text-[#071018] transition hover:brightness-110">Supprimer</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+        </div>
+
+    </main>
+
+    <!-- end main section -->
+
+</body>
+
+</html>

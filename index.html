@@ -9,7 +9,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="../js/page-effectif.js" type="module"></script>
     <title>Tachkila</title>
 </head>
 
@@ -24,6 +24,23 @@
 
                 <p class="text-gray-50 font-bold ">TACHKILA</p>
             </div>
+
+            <nav class="navbar h-[40px] flex items-center  ">
+                <ul
+                    class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
+                    <li
+                        class=" active text-xs flex self-center bg-[#1eba5f] rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 ">
+                        <a href="index.html">Effectif</a>
+                    </li>
+                    <li class=" rounded-lg px-4 py-2 font-semibold text-xs hover:bg-slate-800">
+                        <a href="composition.html">composition</a>
+                    </li>
+                    <li class="rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">
+                        <a href="matchs.html">matches</a>
+                    </li>
+                </ul>
+            </nav>
+
             <div class="position-legend">
                 <ul class="flex gap-2 max-[767px]:grid max-[767px]:grid-cols-2 max-[767px]:gap-1 ">
                     <li class="text-xs text-orange-400 flex gap-1">
@@ -40,291 +57,131 @@
                     </li>
                 </ul>
             </div>
-            <div class="schema flex gap-3">
-                <p class="text-ms text-mist-400 ">schéma</p>
-                <div class="px-1 border rounded-[10px] border-mist-700 bg-[#1E293B] text-gray-50">4-4-2</div>
-            </div>
+
         </div>
 
     </header>
     <!-- end header -->
     <!-- start main section -->
-    <main>
-        <div class="main-container flex lg:flex-row bg-[#0F172A] md:flex-col max-[767px]:flex-col">
-            <!-- THR SIDE BAR -->
-
-            <aside class="sidebar">
-                <div
-                    class="side-container flex flex-col bg-[#1E293B] lg:w-[300px] h-[107%] px-2 border-r border-solid border-gray-500 md:w-full ms:w-full">
-                    <button type="button" id="add-player"
-                        class="add-player-btn bg-[#1eba5f] text-gray-50 lg:w-[280px] lg:h-[50px] rounded-[10px] mt-[15px] mb-[10px] font-bold md:w-[400px]  md:self-center">
-                        + Ajouter un joueur
-                    </button>
-                    <div class=" flex justify-between text-white text-xs md:mx-[40px] ms:mx-[40px]">
-                        <h3 class="font-bold">Effectif</h3>
-                        <span class="player-count p-[3px] border rounded-[10px] bg-[#0F172A]"><span
-                                id="tachkila-nbr">0</span> joueur(s)</span>
-                    </div>
-                    <p class="text-xs text-mist-400 pt-[10px] pl-[2px] pb-[3px] md:self-center ms:self-center">
-                        Cliquez sur un joueur placé pour voir sa case sur le
-                        terrain. 🖊️ pour modifier, 🗑 pour supprimer.
-                    </p>
-                    <!-- Player list -->
-                    <div id="playerlist" class="player-list hidden md:w-[85%] md:mx-auto ms:w-[85%] ms:mx-auto">
-                        <div
-                            class="player-card px-1 text-gray-50 h-[100px] mt-[10px] mb-[10px] border rounded-[10px] border-l-[4px] border-solid ">
-                            <div class="player-info flex justify-between p-[6px]">
-                                <div class="player-summary flex gap-4">
-                                    <div
-                                        class="player-number self-center w-[30px] h-[30px] rounded-[30px] border border-solid  text-center ">
-                                        1</div>
-                                    <div class="player-details">
-                                        <div class="player-name font-bold text-white">bono</div>
-                                        <div class="player-poste ">Gardien</div>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <button type="button" class="edit-btn pr-[4px]"><i
-                                            class="fa-solid fa-pen"></i></button>
-                                    <button type="button" class="delete-btn pr-[2px]" aria-label="Modifier le joueur"><i
-                                            class="fa-solid fa-trash-can"></i></button>
-                                </div>
-                            </div>
-                            <select
-                                class="player-position-select w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B]">
-                                <option value="bench" selected>Sur le banc</option>
-                                <option value="GB">GB - Gardien</option>
-                                <option value="DG">DG - Défenseur gauche</option>
-                                <option value="DC1">DC - Défenseur central 1</option>
-                                <option value="DC2">DC - Défenseur central 2</option>
-                                <option value="DD">DD - Défenseur droit</option>
-                                <option value="MG">MG - Milieu gauche</option>
-                                <option value="MC1">MC - Milieu central 1</option>
-                                <option value="MC2">MC - Milieu central 2</option>
-                                <option value="MD">MD - Milieu droit</option>
-                                <option value="BU1">BU - Buteur 1</option>
-                                <option value="BU2">BU - Buteur 2</option>
-                            </select>
-                        </div>
-                    </div>
+    <main class="min-h-screen bg-[#0F172A] text-white">
+        <div class="roster-page mx-auto flex max-w-[1600px] flex-col gap-6 px-4 py-6 md:px-8">
+            <section class="header-effective flex shrink-1 justify-between">
+                <div class="title">
+                    <h2 class="font-bold text-3xl">Effectif</h2>
+                    <p class="text-slate-400">Gerez les joueurs du club atlas FC</p>
                 </div>
-            </aside>
-
-
-            <!-- The terrain -->
-
-            <section class="pitch-section min-w-0 flex-1 overflow-x-auto ">
-                <div class="pitch-scroll w-full ">
-
-                    <div class="football-pitch min-w-[650px] shrink-0">
-                        <!-- player in pitch -->
-                        <div class="GB terrain-position flex gap-1 justify-center">
-                            <div class="number hidden">
-                                0
-                            </div>
-                            <div class="player-details">
-                                <div class="player-position-code text-orange-400 ">GB</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="DG terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF] hidden">
-                                0 </div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#3AC8EF] font-bold">DG</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="DC1 terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF] hidden">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#3AC8EF] font-bold">DC</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="DC2 terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#3AC8EF] font-bold">DC</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="DD terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#3AC8EF] font-bold">DD</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="MG terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#20D244] font-bold">MG</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="MC1 terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#20D244] font-bold">MC</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="MC2 terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#20D244] font-bold">MC</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="MD terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#20D244] font-bold">MD</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="BU1 terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#D75241] rounded-full text-center self-center p-[5px] text-[#D75241]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#D75241] font-bold">BU</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div class="BU2 terrain-position flex gap-1 justify-center">
-                            <div
-                                class="number hidden w-[25px] h-[25px] border border-solid border-[#D75241] rounded-full text-center self-center p-[5px] text-[#D75241]">
-                                0</div>
-                            <div class="player-details">
-                                <div class="player-position-code text-[#D75241] font-bold">BU</div>
-                                <div class="player-name-position font-bold text-white">libre</div>
-                            </div>
-                        </div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-
-
-                    </div>
-
-                </div>
-
-                <p class="pitch-instructions w-[70%] mx-auto mt-[10px] mb-[20px] text-white text-xs text-center">
-                    Gardien à gauche - attague à droite. Choisissez la position de chaque
-                    joueur dans la liste. Joueurs placés
-                </p>
-
-                <p id="error-msg"
-                    class="hidden text-white text-ms text-center absolute w-[60%] h-[45px] bg-red-500 text-center bottom-[25px] right-[10px] rounded-[10px] pt-[10px] ">
-                </p>
-                <p id="success-msg"
-                    class="hidden text-white text-green-600  text-ms text-center absolute w-[60%] h-[45px] bg-[#1eba5f] text-center bottom-[25px] right-[10px] rounded-[10px] pt-[10px]">
-                </p>
-
+                <button type="button" id="add-player"
+                    class="add-player-btn bg-[#1eba5f] text-gray-50 lg:w-[250px] lg:h-[30px] rounded-[10px] mt-[15px] mb-[10px] font-bold md:w-[400px]  md:self-center">
+                    + Ajouter un joueur
+                </button>
 
             </section>
 
 
+            <!-- Recherche et filtres par poste -->
+            <section
+                class="players-area flex flex-col gap-3 rounded-2xl border border-slate-700 bg-[#1E293B] p-4 md:flex-row md:items-center">
+                <div
+                    class="player-search flex h-12 flex-1 items-center rounded-xl border border-slate-600 bg-[#0F172A] px-4">
+                    <input type="search" id="search-player" name="search-player"
+                        class="h-full w-full bg-transparent text-white outline-none placeholder:text-slate-500"
+                        placeholder="Rechercher un joueur par nom...">
+                </div>
+                <div id="position-filters"
+                    class="position-filters flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] p-1">
+                    <button type="button"
+                        class="position-filter active rounded-lg bg-[#1eba5f] px-4 py-2 font-semibold text-xs hover:bg-slate-800">Tous</button>
+                    <button type="button"
+                        class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">GB</button>
+                    <button type="button"
+                        class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">DEF</button>
+                    <button type="button"
+                        class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">MIL</button>
+                    <button type="button"
+                        class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">ATT</button>
+                </div>
+            </section>
+
+            <!-- Liste des joueurs : -->
+            <section id="player-list" class="player-list grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4"
+                aria-label="Liste des joueurs">
+                <article
+                    class="player-card relative rounded-2xl border border-slate-700 border-l-4 border-l-amber-400 bg-[#1E293B] p-5">
+                    <span
+                        class="captain-badge hidden absolute -right-2 -top-2 flex h-9 w-9 items-center justify-center rounded-full bg-purple-500 font-bold text-white">C</span>
+                    <div class="player-card-header flex items-start gap-4">
+                        <span
+                            class="player-number flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-amber-400 text-amber-400 text-xl font-bold">1</span>
+                        <div class="player-details min-w-0">
+                            <h2 class="player-name text-lg font-bold text-white">Bono</h2>
+                            <span
+                                class="player-position mt-1 rounded-md bg-amber-500/20 text-amber-300 px-2.5 py-1 text-sm font-semibold">GB</span>
+                        </div>
+                    </div>
+                    <p class="player-age mt-5 text-slate-400">Âge : 29 ans</p>
+                    <div class="player-card-footer mt-5 flex items-center justify-between gap-3">
+                        <span
+                            class="player-status rounded-md bg-emerald-500/20 text-emerald-300 px-2.5 py-1 text-sm font-semibold">En
+                            forme</span>
+                        <div class="player-actions flex items-center gap-3">
+                            <button type="button"
+                                class="captain-btn rounded-lg bg-purple-500 px-3 py-2 font-bold text-white">C</button>
+                            <button type="button" class="edit-player-btn p-2 text-slate-400 hover:text-white"><i
+                                    class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                            <button type="button" class="delete-player-btn p-2 text-slate-400 hover:text-rose-400"><i
+                                    class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article
+                    class="player-card relative rounded-2xl border border-slate-700 border-l-4 border-l-amber-400 bg-[#1E293B] p-5">
+                    <span
+                        class="captain-badge hidden absolute -right-2 -top-2 flex h-9 w-9 items-center justify-center rounded-full bg-purple-500 font-bold text-white">C</span>
+                    <div class="player-card-header flex items-start gap-4">
+                        <span
+                            class="player-number flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-amber-400 text-amber-400 text-xl font-bold">1</span>
+                        <div class="player-details min-w-0">
+                            <h2 class="player-name text-lg font-bold text-white">Bono</h2>
+                            <span
+                                class="player-position mt-1 rounded-md bg-amber-500/20 text-amber-300 px-2.5 py-1 text-sm font-semibold">GB</span>
+                        </div>
+                    </div>
+                    <p class="player-age mt-5 text-slate-400">Âge : 29 ans</p>
+                    <div class="player-card-footer mt-5 flex items-center justify-between gap-3">
+                        <span
+                            class="player-status rounded-md bg-emerald-500/20 text-emerald-300 px-2.5 py-1 text-sm font-semibold">En
+                            forme</span>
+                        <div class="player-actions flex items-center gap-3">
+                            <button type="button"
+                                class="captain-btn rounded-lg px-3 py-2 font-bold text-white text-xl hover:text-purple-500">C</button>
+                            <button type="button" class="edit-player-btn p-2 text-slate-400 hover:text-white"><i
+                                    class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                            <button type="button" class="delete-player-btn p-2 text-slate-400 hover:text-rose-400"><i
+                                    class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- Pagination -->
+            <section class="pagination flex flex-col gap-4 pb-5 sm:flex-row sm:items-center sm:justify-between">
+                <p id="players-count" class="players-count text-slate-400">Affichage de 8 sur 14 joueurs</p>
+                <nav class="pagination-controls flex items-center justify-end gap-2">
+                    <button type="button" id="previous-page"
+                        class="pagination-btn rounded-lg border border-slate-700 px-4 py-2 font-bold text-slate-500"
+                        disabled>Précédent</button>
+                    <span id="page-count" class="page-count px-1 font-bold">Page 1 / 2</span>
+                    <button type="button" id="next-page"
+                        class="pagination-btn rounded-lg border border-slate-600 px-4 py-2 font-bold hover:bg-slate-800">Suivant</button>
+                </nav>
+            </section>
+
             <!-- POP UP -->
             <section id="popup"
                 class="add-player-modal fixed inset-0 z-2 flex items-center justify-center bg-black/70 p-4 hidden ">
-                <div class="modal w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-900 p-4">
+                <div class="  add-modal w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-900 p-4">
 
                     <!-- Header -->
                     <div class="mb-6 flex items-center justify-between gap-4">
@@ -342,10 +199,10 @@
                     </div>
 
                     <!-- Form -->
-                    <form id="addplayer" class="space-y-2">
+                    <form id="addplayer" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-4">
 
                         <!-- Name -->
-                        <div>
+                        <div class="col-span-full">
                             <label for="name" class="mb-1 block text-sm font-medium text-slate-200">
                                 Nom complet
                             </label>
@@ -362,41 +219,25 @@
                                 Poste
                             </legend>
 
-                            <div id="poste" class="grid grid-cols-2 gap-2 ">
-
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="poste" value="Gardien" class="peer sr-only">
-                                    <span
-                                        class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
-                                        Gardien
-                                    </span>
-                                </label>
-
-                                <label class="cursor-pointer ">
-                                    <input type="radio" name="poste" value="Defenseur" class="peer sr-only ">
-                                    <span
-                                        class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-cyan-400 peer-checked:bg-cyan-400/10 peer-checked:text-cyan-300">
-                                        Défenseur
-                                    </span>
-                                </label>
-
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="poste" value="Milieu" class="peer sr-only">
-                                    <span
-                                        class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-green-400 peer-checked:bg-green-400/10 peer-checked:text-green-300">
-                                        Milieu
-                                    </span>
-                                </label>
-
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="poste" value="Attaquant" class="peer sr-only">
-                                    <span
-                                        class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-red-400 peer-checked:bg-red-400/10 peer-checked:text-red-300">
-                                        Attaquant
-                                    </span>
-                                </label>
-
-                            </div>
+                            <select
+                                class="player-position-select w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B] px-4 py-2">
+                                <option value="Gardien"
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
+                                    Gardien
+                                </option>
+                                <option value="Defenseur"
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-cyan-400 peer-checked:bg-cyan-400/10 peer-checked:text-cyan-300">
+                                    Défenseur
+                                </option>
+                                <option value="Milieu"
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-green-400 peer-checked:bg-green-400/10 peer-checked:text-green-300">
+                                    Milieu
+                                </option>
+                                <option value="Attaquant"
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-red-400 peer-checked:bg-red-400/10 peer-checked:text-red-300">
+                                    Attaquant
+                                </option>
+                            </select>
 
                             <p id="flied-err" class="message mt-2 text-sm text-red-400"></p>
                         </fieldset>
@@ -412,9 +253,40 @@
 
                             <p id="nbr-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
+                        <!-- age -->
+                        <div>
+                            <label for="age" class="mb-1 block text-sm font-medium text-slate-200">
+                                age
+                            </label>
 
+                            <input type="number" min=18 max=43 id="age" name="age" placeholder="Ex. : 25 ans"
+                                class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
+
+                            <p id="name-err" class="message mt-1 text-sm text-red-400"></p>
+                        </div>
+                        <!-- status -->
+                        <fieldset>
+                            <legend class="mb-2 text-sm font-medium text-slate-200">
+                                status
+                            </legend>
+
+                            <select
+                                class="player-status-select w-[96%] m-auto border rounded-[10px] px-4 py-2 border-mist-700 bg-[#1E293B]">
+                                <option value="en-form"
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
+                                    En forme
+                                </option>
+                                <option value="en-blesse"
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-cyan-400 peer-checked:bg-cyan-400/10 peer-checked:text-cyan-300">
+                                    En Blessé
+                                </option>
+
+                            </select>
+
+                            <p id="flied-err" class="message mt-2 text-sm text-red-400"></p>
+                        </fieldset>
                         <!-- Actions -->
-                        <div class="flex gap-3 pt-5 justify-end">
+                        <div class="flex gap-3 pt-5 justify-end col-span-full">
                             <button type="reset" id="popup-cancel"
                                 class="w-full rounded-xl border border-slate-700 px-5 py-3 font-medium text-slate-300 hover:bg-slate-800 sm:w-auto">
                                 Annuler
