@@ -221,6 +221,10 @@
 
                             <select
                                 class="player-position-select w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B] px-4 py-2">
+                                <option disabled selected value=""
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
+                                    choisez un poste
+                                </option>
                                 <option value="Gardien"
                                     class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
                                     Gardien
@@ -249,7 +253,7 @@
                             </label>
 
                             <input type="number" id="nbr" name="nbr" placeholder="Ex : 10"
-                                class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
+                                class="nbr-test w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
                             <p id="nbr-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
@@ -259,10 +263,10 @@
                                 age
                             </label>
 
-                            <input type="number" min=18 max=43 id="age" name="age" placeholder="Ex. : 25 ans"
+                            <input type="number" id="age" name="age" placeholder="Ex. : 25 ans"
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
-                            <p id="name-err" class="message mt-1 text-sm text-red-400"></p>
+                            <p id="age-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
                         <!-- status -->
                         <fieldset>
@@ -272,6 +276,10 @@
 
                             <select
                                 class="player-status-select w-[96%] m-auto border rounded-[10px] px-4 py-2 border-mist-700 bg-[#1E293B]">
+                               <option disabled selected value=""
+                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
+                                    choisez status de joueur
+                                </option>
                                 <option value="en-form"
                                     class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
                                     En forme
@@ -283,7 +291,7 @@
 
                             </select>
 
-                            <p id="flied-err" class="message mt-2 text-sm text-red-400"></p>
+                            <p id="status-err" class="message mt-2 text-sm text-red-400"></p>
                         </fieldset>
                         <!-- Actions -->
                         <div class="flex gap-3 pt-5 justify-end col-span-full">
