@@ -103,51 +103,22 @@
             </section>
 
             <!-- Liste des joueurs : -->
-            <section id="player-list" class="player-list grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4"
+            <section id="player-list-effective" class="player-list grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4"
                 aria-label="Liste des joueurs">
                 <article
-                    class="player-card relative rounded-2xl border border-slate-700 border-l-4 border-l-amber-400 bg-[#1E293B] p-5">
+                    class="player-card-effective hidden relative rounded-2xl border border-l-4  bg-[#1E293B] p-5">
                     <span
                         class="captain-badge hidden absolute -right-2 -top-2 flex h-9 w-9 items-center justify-center rounded-full bg-purple-500 font-bold text-white">C</span>
                     <div class="player-card-header flex items-start gap-4">
                         <span
-                            class="player-number flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-amber-400 text-amber-400 text-xl font-bold">1</span>
+                            class="player-number-effective flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2  text-xl font-bold"></span>
                         <div class="player-details min-w-0">
-                            <h2 class="player-name text-lg font-bold text-white">Bono</h2>
+                            <h2 class="player-name-effective text-lg font-bold text-white">Bono</h2>
                             <span
-                                class="player-position mt-1 rounded-md bg-amber-500/20 text-amber-300 px-2.5 py-1 text-sm font-semibold">GB</span>
+                                class="player-position-effective mt-1 rounded-md px-2.5 py-1 text-sm font-semibold">GB</span>
                         </div>
                     </div>
-                    <p class="player-age mt-5 text-slate-400">Âge : 29 ans</p>
-                    <div class="player-card-footer mt-5 flex items-center justify-between gap-3">
-                        <span
-                            class="player-status rounded-md bg-emerald-500/20 text-emerald-300 px-2.5 py-1 text-sm font-semibold">En
-                            forme</span>
-                        <div class="player-actions flex items-center gap-3">
-                            <button type="button"
-                                class="captain-btn rounded-lg bg-purple-500 px-3 py-2 font-bold text-white">C</button>
-                            <button type="button" class="edit-player-btn p-2 text-slate-400 hover:text-white"><i
-                                    class="fa-solid fa-pen" aria-hidden="true"></i></button>
-                            <button type="button" class="delete-player-btn p-2 text-slate-400 hover:text-rose-400"><i
-                                    class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                </article>
-
-                <article
-                    class="player-card relative rounded-2xl border border-slate-700 border-l-4 border-l-amber-400 bg-[#1E293B] p-5">
-                    <span
-                        class="captain-badge hidden absolute -right-2 -top-2 flex h-9 w-9 items-center justify-center rounded-full bg-purple-500 font-bold text-white">C</span>
-                    <div class="player-card-header flex items-start gap-4">
-                        <span
-                            class="player-number flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-amber-400 text-amber-400 text-xl font-bold">1</span>
-                        <div class="player-details min-w-0">
-                            <h2 class="player-name text-lg font-bold text-white">Bono</h2>
-                            <span
-                                class="player-position mt-1 rounded-md bg-amber-500/20 text-amber-300 px-2.5 py-1 text-sm font-semibold">GB</span>
-                        </div>
-                    </div>
-                    <p class="player-age mt-5 text-slate-400">Âge : 29 ans</p>
+                    <p class="player-age mt-5 text-slate-400">Âge : <span id="player-age"> 29</span> ans</p>
                     <div class="player-card-footer mt-5 flex items-center justify-between gap-3">
                         <span
                             class="player-status rounded-md bg-emerald-500/20 text-emerald-300 px-2.5 py-1 text-sm font-semibold">En
