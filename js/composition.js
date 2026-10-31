@@ -54,11 +54,11 @@ playerlist.addEventListener("change",(e)=>{
                             break;  
                         }
                     }
-                 localStorage.setItem("players", JSON.stringify(players));
-                 pitch(players);
+                 
 
                 }
-               
+               localStorage.setItem("players", JSON.stringify(players));
+                 pitch(players);
                  
 })
 
