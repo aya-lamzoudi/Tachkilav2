@@ -182,7 +182,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form id="add-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3" novalidate>
+                    <form id="form-add-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3" novalidate>
 
                         <!-- Adversaire -->
                         <div class="col-span-full">
@@ -211,14 +211,14 @@
                         </div>
                         <!-- heure -->
                         <div>
-                            <label for="heure" class="mb-1 block text-sm font-medium text-slate-200">
-                               time
+                            <label for="time" class="mb-1 block text-sm font-medium text-slate-200">
+                               Time
                             </label>
 
                             <input type="time" id="time" name="time" 
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
-                            <p id="time" class="message mt-1 text-sm text-red-400"></p>
+                            <p id="time-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
 
                         <!-- location -->
@@ -236,7 +236,7 @@
                         <!-- status -->
                         <fieldset class="col-span-full">
                             <legend class="mb-2 text-sm font-medium text-slate-200 ">
-                                status
+                                venue;
                             </legend>
 
                             <select id="venue"
@@ -256,7 +256,7 @@
 
                             </select>
 
-                            <p id="status-err" class="message mt-2 text-sm text-red-400"></p>
+                            <p id="venue-err" class="message mt-2 text-sm text-red-400"></p>
                         </fieldset>
                         <!-- Actions -->
                         <div class="flex gap-3 pt-5 justify-end col-span-full">
@@ -296,7 +296,8 @@
                     </div>
 
                     <!-- Form -->
-                    <form id="update-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3" novalidate>
+
+                    <form id="form-update-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3" novalidate>
 
                         <!-- Adversaire -->
                         <div class="col-span-full">
