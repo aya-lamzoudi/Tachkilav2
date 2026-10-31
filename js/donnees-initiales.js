@@ -17,8 +17,8 @@ const match = [
         heure: "15:43",
         lieu: "Stade",
         domicile: true, // true = Domicile, false
-         butsAtlas: 3,   // null tant que le score
-         butsAdversaire: 1,    // null tant que le score 
-      
+        butsAtlas: 3,   // null tant que le score
+        butsAdversaire: 1,    // null tant que le score 
+
     }
 ]

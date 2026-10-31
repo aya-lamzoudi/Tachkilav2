@@ -59,11 +59,8 @@ playerliste.addEventListener("click", function (event) {
                 editform.querySelector("#nbr").value = player.numero;
                 editform.querySelector("#age").value = player.age;
                 oldnumber = player.numero;
-                // editform.querySelectorAll('#update input[name="poste"]').forEach(input => {
-                //     input.checked = input.value === player.post;
-                // });
                 editform.querySelector(".player-position").value = player.post;
-                editform.querySelector(".player-status").value = player.post;
+                editform.querySelector(".player-status").value = player.status;
             }
         });
 
@@ -110,8 +107,6 @@ form.addEventListener("submit", function (event) {
     validatepost(form);
     validatestatus(form);
 
-    let value = form.querySelector(".player-position").value;
-    let valuestatus = form.querySelector(".player-status").value;
 
     // check errors
 
@@ -129,8 +124,8 @@ form.addEventListener("submit", function (event) {
         let player = {
             id: chnageId(),
             nom: form.querySelector("#name").value,
-            post: value,
-            status: valuestatus,
+            post: form.querySelector(".player-position").value,
+            status: form.querySelector(".player-status").value,
             numero: form.querySelector("#nbr").value,
             age: form.querySelector("#age").value,
             position: "bench",
@@ -167,9 +162,6 @@ editform.addEventListener("submit", function (event) {
     validatepost(editform);
     validatestatus(editform);
 
-    let value = editform.querySelector(".player-position").value;
-    let valuestatus = editform.querySelector(".player-status").value;
-
     // check errors
 
     let errors = editform.querySelectorAll(".message");
@@ -191,7 +183,7 @@ editform.addEventListener("submit", function (event) {
             if (oldnumber == player.numero) {
 
                 player.nom = editform.querySelector("#name").value;
-                player.post = value;
+                player.post = editform.querySelector(".player-position").value;
                 player.numero = editform.querySelector("#nbr").value;
                 player.position = editform.querySelector(".player-position").value
                 player.status = editform.querySelector(".player-status").value;
@@ -362,3 +354,5 @@ useraction.addEventListener("click", (event) => {
 
 
 })
+
+console.log(players)

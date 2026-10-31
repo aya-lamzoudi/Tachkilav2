@@ -30,6 +30,7 @@ export function pitch(players) {
                 path.querySelector(".player-name-position").innerText = player.nom
                 path.querySelector(".number").innerText = player.numero;
                 path.querySelector(".number").classList.remove("hidden");
+                console.log(player.position)
             }
 
         }
@@ -44,16 +45,14 @@ export function affichage(players, liste, template) {
         const clone = template.content.cloneNode(true);
         const card = clone.querySelector(".player-card");
 
-
         card.querySelector(".player-number").innerText = player.numero;
         card.querySelector(".player-name").innerText = player.nom;
         card.querySelector(".player-position").innerText = player.post;
-        if (template.id == "effective") {
+        if (template.id == "effectif") {
             card.querySelector("#player-age").innerText = player.age;
             card.querySelector(".player-status").innerText = player.status;
+           
         }
-
-
 
         //check colors:
 
@@ -67,6 +66,7 @@ export function affichage(players, liste, template) {
                    <option value="BU1">BU - Buteur 1</option>
                    <option value="BU2">BU - Buteur 2</option>
                   `
+                  card.querySelector('select').value=player.position;
             }
 
         } else if (player.post == "Milieu") {
@@ -81,6 +81,7 @@ export function affichage(players, liste, template) {
                   <option value="MC2">MC - Milieu central 2</option>
                   <option value="MD">MD - Milieu droit</option>
                   `
+                  card.querySelector('select').value=player.position;
             }
 
         } else if (player.post == "Defenseur") {
@@ -95,6 +96,7 @@ export function affichage(players, liste, template) {
                   <option value="DC2">DC - Défenseur central 2</option>
                   <option value="DD">DD - Défenseur droit</option>
                   `
+                  card.querySelector('select').value=player.position;
             }
         } else if (player.post == "Gardien") {
             card.classList.toggle("border-orange-400");
@@ -105,6 +107,7 @@ export function affichage(players, liste, template) {
                     <option value="bench" selected>Sur le banc</option>
                   <option value="GB">GB - Gardien</option>
                   `
+                  card.querySelector('select').value=player.position;
             }
         }
         card.classList.remove("hidden")
@@ -114,49 +117,7 @@ export function affichage(players, liste, template) {
     });
 }
 
-// afficher les jouer in page effective:
-export function affichagecomp(players, liste) {
-    liste.innerHTML = ``;
-    players.forEach(player => {
-        const template = document.querySelector(".composition-card-liste").content.cloneNode(true);
-        const card = template.querySelector(".player-card-effective");
 
-        card.querySelector(".player-number-effective").innerText = player.numero;
-        card.querySelector(".player-name-effective").innerText = player.nom;
-        card.querySelector(".player-position-effective").innerText = player.post;
-        card.querySelector("#player-age").innerText = player.age;
-        card.querySelector(".player-status-effective").innerText = player.status;
-
-        //check colors:
-
-        if (player.post == "Attaquant") {
-            card.classList.toggle("border-[#d75241]");
-            card.querySelector(".player-number-effective").classList.toggle("border-[#d75241]");
-            card.querySelector(".player-position-effective").classList.toggle("text-[#d75241]");
-
-
-        } else if (player.post == "Milieu") {
-            card.classList.toggle("border-[#20d244]");
-            card.querySelector(".player-number-effective").classList.toggle("border-[#20d244]");
-            card.querySelector(".player-position-effective").classList.toggle("text-[#20d244]");
-
-        } else if (player.post == "Defenseur") {
-            card.classList.toggle("border-[#3AC8EF]");
-            card.querySelector(".player-number-effective").classList.toggle("border-[#3AC8EF]");
-            card.querySelector(".player-position-effective").classList.toggle("text-[#3AC8EF]");
-
-        } else if (player.post == "Gardien") {
-            card.classList.toggle("border-orange-400");
-            card.querySelector(".player-number-effective").classList.toggle("border-orange-400");
-            card.querySelector(".player-position-effective").classList.toggle("text-orange-400");
-
-        }
-        card.classList.remove("hidden")
-        liste.appendChild(card);
-
-
-    });
-}
 
 //filtre les jour par poste:
 
