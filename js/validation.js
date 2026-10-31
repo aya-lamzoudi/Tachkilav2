@@ -1,9 +1,10 @@
 import { players } from "./stockage.js";
 
-export function validatename() {
-    let name = document.querySelector("#name").value.trim();
-    let error = document.querySelector("#name-err");
-
+export function validatename(form) {
+    // let name = document.querySelector("#name").value.trim();
+    // let error = document.querySelector("#name-err");
+let name = form.querySelector("#name").value.trim();
+    let error = form.querySelector("#name-err");
     if (name === "") {
         error.innerText = "this flied should not be empty";
     } else if (!/^[a-zA-Z\s]+$/.test(name)) {
@@ -13,9 +14,9 @@ export function validatename() {
     }
 }
 
-export function validatenbr() {
-    const nbr = document.querySelector("#nbr").value.trim();
-    const error = document.querySelector("#nbr-err");
+export function validatenbr(form) {
+    const nbr = form.querySelector("#nbr").value.trim();
+    const error = form.querySelector("#nbr-err");
     if (nbr === "") {
         error.innerText = "This field should not be empty";
     } else if (nbr.length < 1 && nbr.length > 99) {
@@ -26,9 +27,9 @@ export function validatenbr() {
         error.innerText = "";
     }
 }
-export function validateage() {
-    const age = document.querySelector("#age").value.trim();
-    const error = document.querySelector("#age-err");
+export function validateage(form) {
+    const age = form.querySelector("#age").value.trim();
+    const error = form.querySelector("#age-err");
     if (age === "") {
         error.innerText = "This field should not be empty";
     } else if (!/^(1[89]|[2-3][0-9]|4[0-3])$/.test(age)) {
@@ -38,9 +39,9 @@ export function validateage() {
     }
 }
 
-export function validatepost() {
-    const poste = popup.querySelector(".player-position-select").value;
-    const error = document.querySelector("#flied-err");
+export function validatepost(form) {
+    const poste = form.querySelector(".player-position").value;
+    const error = form.querySelector("#flied-err");
 
     if (poste=== "") {
         error.innerText = "Choisissez un poste";
@@ -50,9 +51,9 @@ export function validatepost() {
 
     }
 }
-export function validatestatus() {
-    const poste = popup.querySelector(".player-status-select").value;
-    const error = document.querySelector("#status-err");
+export function validatestatus(form) {
+    const poste = form.querySelector(".player-status").value;
+    const error = form.querySelector("#status-err");
 
     if (poste=== "") {
         error.innerText = "Choisissez un poste";
@@ -66,22 +67,22 @@ export function validatestatus() {
 
 //validate edit pop-up functions
 
-export function validateeditname() {
-    let name = document.querySelector("#update-name").value.trim();
-    let error = document.querySelector("#update-name-err");
+// export function validateeditname(form) {
+//     let name = document.querySelector("#name").value.trim();
+//     let error = document.querySelector("#name-err");
 
-    if (name === "") {
-        error.innerText = "this flied should not be empty";
-    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
-        error.innerText = "this flied should containe just a letters";
-    } else {
-        error.innerText = "";
-    }
-}
+//     if (name === "") {
+//         error.innerText = "this flied should not be empty";
+//     } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+//         error.innerText = "this flied should containe just a letters";
+//     } else {
+//         error.innerText = "";
+//     }
+// }
 
-export function validateeditnbr() {
-    let nbr = document.querySelector("#update-nbr").value.trim();
-    let error = document.querySelector("#update-nbr-err");
+export function validateeditnbr(form,oldnumber) {
+    let nbr = form.querySelector("#nbr").value.trim();
+    let error = form.querySelector("#nbr-err");
 
     if (nbr === "") {
         error.innerText = "This field should not be empty";

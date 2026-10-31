@@ -105,39 +105,13 @@
             <!-- Liste des joueurs : -->
             <section id="player-list-effective" class="player-list grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4"
                 aria-label="Liste des joueurs">
-                <article
-                    class="player-card-effective hidden relative rounded-2xl border border-l-4 bg-[#1E293B] p-5">
-                    <span
-                        class="captain-badge hidden absolute -right-2 -top-2 flex h-9 w-9 items-center justify-center rounded-full bg-purple-500 font-bold text-white">C</span>
-                    <div class="player-card-header flex items-start gap-4">
-                        <span
-                            class="player-number-effective flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2  text-xl font-bold"></span>
-                        <div class="player-details min-w-0">
-                            <h2 class="player-name-effective text-lg font-bold text-white">Bono</h2>
-                            <span
-                                class="player-position-effective mt-1 rounded-md px-2.5 py-1 text-sm font-semibold">GB</span>
-                        </div>
-                    </div>
-                    <p class="player-age mt-5 text-slate-400">Âge : <span id="player-age"> 29</span> ans</p>
-                    <div class="player-card-footer mt-5 flex items-center justify-between gap-3">
-                        <span
-                            class="player-status rounded-md bg-emerald-500/20 text-emerald-300 px-2.5 py-1 text-sm font-semibold">En
-                            forme</span>
-                        <div class="player-actions flex items-center gap-3">
-                            <button type="button"
-                                class="captain-btn rounded-lg px-3 py-2 font-bold text-white text-xl hover:text-purple-500">C</button>
-                            <button type="button" class="edit-player-btn p-2 text-slate-400 hover:text-white"><i
-                                    class="fa-solid fa-pen" aria-hidden="true"></i></button>
-                            <button type="button" class="delete-player-btn p-2 text-slate-400 hover:text-rose-400"><i
-                                    class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                </article>
+
+                <!-- add player card here -->
 
             </section>
             <p id="success-msg"
-                    class="hidden text-white text-green-600  text-ms text-center absolute w-[60%] h-[45px] bg-[#1eba5f] text-center bottom-[25px] right-[10px] rounded-[10px] pt-[10px]">
-                </p>
+                class="hidden text-white text-green-600  text-ms text-center absolute w-[60%] h-[45px] bg-[#1eba5f] text-center bottom-[25px] right-[10px] rounded-[10px] pt-[10px]">
+            </p>
 
             <!-- Pagination -->
             <section class="pagination flex flex-col gap-4 pb-5 sm:flex-row sm:items-center sm:justify-between">
@@ -194,7 +168,7 @@
                             </legend>
 
                             <select
-                                class="player-position-select w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B] px-4 py-2">
+                                class="player-position w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B] px-4 py-2">
                                 <option disabled selected value=""
                                     class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
                                     choisez un poste
@@ -248,17 +222,17 @@
                                 status
                             </legend>
 
-                            <select
-                                class="player-status-select w-[96%] m-auto border rounded-[10px] px-4 py-2 border-mist-700 bg-[#1E293B]">
-                               <option disabled selected value=""
+                            <select id="status"
+                                class="player-status w-[96%] m-auto border rounded-[10px] px-4 py-2 border-mist-700 bg-[#1E293B]">
+                                <option disabled selected value=""
                                     class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
                                     choisez status de joueur
                                 </option>
-                                <option value="en-form"
+                                <option value="En form"
                                     class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
                                     En forme
                                 </option>
-                                <option value="en-blesse"
+                                <option value="En blesse"
                                     class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-cyan-400 peer-checked:bg-cyan-400/10 peer-checked:text-cyan-300">
                                     En Blessé
                                 </option>
@@ -300,23 +274,26 @@
                             </h2>
                         </div>
 
-                        <button type="button" id="close-popup-effective" aria-label="Fermer"
+                        <button type="button" id="close-popup" aria-label="Fermer"
                             class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800 text-xl text-white hover:bg-slate-700">
                             &times;
                         </button>
                     </div>
                     <!-- Form -->
-                    <form id="updateplayer" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-4" novalidate>
+
+                    <form id="updateplayer" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-4"
+                        novalidate>
 
                         <!-- Name -->
                         <div class="col-span-full">
-                            <label for="update-name" class="mb-1 block text-sm font-medium text-slate-200">
+                            <label for="name" class="mb-1 block text-sm font-medium text-slate-200">
                                 Nom complet
                             </label>
-                            <input type="text" id="update-name" name="name" placeholder="Ex. : Aya lamzoudi"
+
+                            <input type="text" id="name" name="name" placeholder="Ex. : Aya lamzoudi"
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
-                            <p id="update-name-err" class="message mt-1 text-sm text-red-400"></p>
+                            <p id="name-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
 
                         <!-- Position -->
@@ -326,94 +303,78 @@
                             </legend>
 
                             <select
-                                class="update-poste w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B] px-4 py-2">
-                                <option disabled selected value=""
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
+                                class="player-position w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B] px-4 py-2">
+                                <option disabled selected value="">
                                     choisez un poste
                                 </option>
-                                <option value="Gardien"
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
-                                    Gardien
-                                </option>
-                                <option value="Defenseur"
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-cyan-400 peer-checked:bg-cyan-400/10 peer-checked:text-cyan-300">
-                                    Défenseur
-                                </option>
-                                <option value="Milieu"
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-green-400 peer-checked:bg-green-400/10 peer-checked:text-green-300">
-                                    Milieu
-                                </option>
-                                <option value="Attaquant"
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-red-400 peer-checked:bg-red-400/10 peer-checked:text-red-300">
-                                    Attaquant
-                                </option>
+                                <option value="Gardien">Gardien</option>
+                                <option value="Defenseur">Défenseur</option>
+                                <option value="Milieu">Milieu</option>
+                                <option value="Attaquant">Attaquant</option>
                             </select>
 
-                            <p id="update-poste-err" class="message mt-2 text-sm text-red-400"></p>
+                            <p id="flied-err" class="message mt-2 text-sm text-red-400"></p>
                         </fieldset>
 
                         <!-- Number -->
                         <div>
-                            <label for="update-nbr" class="mb-1 text-sm font-medium text-slate-200">
+                            <label for="nbr" class="mb-1 text-sm font-medium text-slate-200">
                                 Numéro (1 a 99):
                             </label>
 
-                            <input type="number" id="update-nbr" name="nbr" placeholder="Ex : 10"
+                            <input type="number" id="nbr" name="nbr" placeholder="Ex : 10"
                                 class=" w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
-                            <p id="update-nbr-err" class="message mt-1 text-sm text-red-400"></p>
+                            <p id="nbr-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
-                        <!-- age -->
+
+                        <!-- Age -->
                         <div>
-                            <label for="update-age" class="mb-1 block text-sm font-medium text-slate-200">
+                            <label for="age" class="mb-1 block text-sm font-medium text-slate-200">
                                 age
                             </label>
 
-                            <input type="number" id="update-age" name="age" placeholder="Ex. : 25 ans"
+                            <input type="number" id="age" name="age" placeholder="Ex. : 25 ans"
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
-                            <p id="update-age-err" class="message mt-1 text-sm text-red-400"></p>
+                            <p id="age-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
-                        <!-- status -->
+
+                        <!-- Status -->
                         <fieldset>
                             <legend class="mb-2 text-sm font-medium text-slate-200">
                                 status
                             </legend>
 
-                            <select
-                                class="update-player-status w-[96%] m-auto border rounded-[10px] px-4 py-2 border-mist-700 bg-[#1E293B]">
-                               <option disabled selected value=""
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
+                            <select id="status"
+                                class="player-status w-[96%] m-auto border rounded-[10px] px-4 py-2 border-mist-700 bg-[#1E293B]">
+                                <option disabled selected value="">
                                     choisez status de joueur
                                 </option>
-                                <option value="en-form"
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">
-                                    En forme
-                                </option>
-                                <option value="en-blesse"
-                                    class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-cyan-400 peer-checked:bg-cyan-400/10 peer-checked:text-cyan-300">
-                                    En Blessé
-                                </option>
-
+                                <option value="En form">En form</option>
+                                <option value="En blesse">En Blesse</option>
                             </select>
 
                             <p id="status-err" class="message mt-2 text-sm text-red-400"></p>
                         </fieldset>
+
                         <!-- Actions -->
                         <div class="flex gap-3 pt-5 justify-end col-span-full">
-                            <button type="reset" id="popup-cancel-effective"
+                            <button type="reset" id="popup-cancel"
                                 class="w-full rounded-xl border border-slate-700 px-5 py-3 font-medium text-slate-300 hover:bg-slate-800 sm:w-auto">
                                 Annuler
                             </button>
 
                             <button type="submit" id="ajoute-btn"
                                 class="add-btn w-full rounded-xl bg-[#20D244] px-6 py-3 font-semibold text-slate-950 transition hover:bg-[#4af66d] sm:w-auto">
-                                Ajouter le joueur
+                                Modifier le joueur
                             </button>
                         </div>
 
                     </form>
-                    
+
+
+
                 </div>
             </section>
 
@@ -451,7 +412,34 @@
         </div>
 
     </main>
-
+    <template class="player-card-template" id="effectif">
+        <article class="player-card hidden relative rounded-2xl border border-l-4 bg-[#1E293B] p-5">
+            <span
+                class="captain-badge hidden absolute -right-2 -top-2 flex h-9 w-9 items-center justify-center rounded-full bg-purple-500 font-bold text-white">C</span>
+            <div class="player-card-header flex items-start gap-4">
+                <span
+                    class="player-number flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2  text-xl font-bold"></span>
+                <div class="player-details min-w-0">
+                    <h2 class="player-name text-lg font-bold text-white">Bono</h2>
+                    <span class="player-position mt-1 rounded-md px-2.5 py-1 text-sm font-semibold">GB</span>
+                </div>
+            </div>
+            <p class="player-age mt-5 text-slate-400">Âge : <span id="player-age"> 29</span> ans</p>
+            <div class="player-card-footer mt-5 flex items-center justify-between gap-3">
+                <span
+                    class="player-status rounded-md bg-emerald-500/20 text-emerald-300 px-2.5 py-1 text-sm font-semibold">En
+                    forme</span>
+                <div class="player-actions flex items-center gap-3">
+                    <button type="button"
+                        class="captain-btn rounded-lg px-3 py-2 font-bold text-white text-xl hover:text-purple-500">C</button>
+                    <button type="button" class="edit-player-btn p-2 text-slate-400 hover:text-white"><i
+                            class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                    <button type="button" class="delete-player-btn p-2 text-slate-400 hover:text-rose-400"><i
+                            class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </article>
+    </template>
     <!-- end main section -->
 
 </body>

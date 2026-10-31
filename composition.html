@@ -26,7 +26,8 @@
             </div>
 
             <nav class="navbar h-[40px] flex items-center  ">
-                <ul class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
+                <ul
+                    class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
                     <li class="text-xs flex self-center rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 ">
                         <a href="index.html">Effectif</a>
                     </li>
@@ -67,56 +68,16 @@
             <aside class="sidebar">
                 <div
                     class="side-container flex flex-col bg-[#1E293B] lg:w-[250px] h-[107%] px-2 border-r border-solid border-gray-500 md:w-full ms:w-full">
-                    <!-- <button type="button" id="add-player"
-                        class="add-player-btn bg-[#1eba5f] text-gray-50 lg:w-[280px] lg:h-[50px] rounded-[10px] mt-[15px] mb-[10px] font-bold md:w-[400px]  md:self-center">
-                        + Ajouter un joueur
-                    </button>  -->
-                   <div class=" flex justify-between text-white text-xs mt-[15px] mb-[10px] md:mx-[40px] ms:mx-[40px]">
+
+                    <div class=" flex justify-between text-white text-xs mt-[15px] mb-[10px] md:mx-[40px] ms:mx-[40px]">
                         <h3 class="font-bold">Effectif</h3>
                         <span class="player-count p-[3px] border rounded-[10px] bg-[#0F172A]"><span
                                 id="tachkila-nbr">0</span> joueur(s)</span>
                     </div>
-                    <!-- <p class="text-xs text-mist-400 pt-[10px] pl-[2px] pb-[3px] md:self-center ms:self-center">
-                        Cliquez sur un joueur placé pour voir sa case sur le
-                        terrain. 🖊️ pour modifier, 🗑 pour supprimer.
-                    </p>  -->
-                     <!-- Player list -->
-                    <div id="playerlist" class="player-list hidden md:w-[85%] md:mx-auto ms:w-[85%] ms:mx-auto">
-                        <div
-                            class="player-card px-1 text-gray-50 h-[100px] mt-[10px] mb-[10px] border rounded-[10px] border-l-[4px] border-solid ">
-                            <div class="player-info flex justify-between p-[6px]">
-                                <div class="player-summary flex gap-4">
-                                    <div
-                                        class="player-number self-center w-[30px] h-[30px] rounded-[30px] border border-solid  text-center ">
-                                        1</div>
-                                    <div class="player-details">
-                                        <div class="player-name font-bold text-white">bono</div>
-                                        <div class="player-poste ">Gardien</div>
-                                    </div>
-                                </div>
-                                <!-- <div class="actions">
-                                    <button type="button" class="edit-btn pr-[4px]"><i
-                                            class="fa-solid fa-pen"></i></button>
-                                    <button type="button" class="delete-btn pr-[2px]" aria-label="Modifier le joueur"><i
-                                            class="fa-solid fa-trash-can"></i></button>
-                                </div> -->
-                            </div>
-                            <select
-                                class="player-position-select w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B]">
-                                <option value="bench" selected>Sur le banc</option>
-                                <option value="GB">GB - Gardien</option>
-                                <option value="DG">DG - Défenseur gauche</option>
-                                <option value="DC1">DC - Défenseur central 1</option>
-                                <option value="DC2">DC - Défenseur central 2</option>
-                                <option value="DD">DD - Défenseur droit</option>
-                                <option value="MG">MG - Milieu gauche</option>
-                                <option value="MC1">MC - Milieu central 1</option>
-                                <option value="MC2">MC - Milieu central 2</option>
-                                <option value="MD">MD - Milieu droit</option>
-                                <option value="BU1">BU - Buteur 1</option>
-                                <option value="BU2">BU - Buteur 2</option>
-                            </select>
-                        </div>
+
+                    <!-- Player list -->
+                    <div id="playerlist" class="player-list  md:w-[85%] md:mx-auto ms:w-[85%] ms:mx-auto">
+
                     </div>
                 </div>
             </aside>
@@ -340,6 +301,36 @@
 
     <!-- end main section -->
 
+    <template class="composition-card-liste" id="composition">
+        <div
+            class="player-card px-1 text-gray-50 h-[100px] mt-[10px] mb-[10px] border rounded-[10px] border-l-[4px] border-solid ">
+            <div class="player-info flex justify-between p-[6px]">
+                <div class="player-summary flex gap-4">
+                    <div
+                        class="player-number self-center w-[30px] h-[30px] rounded-[30px] border border-solid  text-center ">
+                        1</div>
+                    <div class="player-details">
+                        <div class="player-name font-bold text-white">bono</div>
+                        <div class="player-position">Gardien</div>
+                    </div>
+                </div>
+            </div>
+            <select class="player-position-select w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B]">
+                <option value="bench" selected>Sur le banc</option>
+                <option value="GB">GB - Gardien</option>
+                <option value="DG">DG - Défenseur gauche</option>
+                <option value="DC1">DC - Défenseur central 1</option>
+                <option value="DC2">DC - Défenseur central 2</option>
+                <option value="DD">DD - Défenseur droit</option>
+                <option value="MG">MG - Milieu gauche</option>
+                <option value="MC1">MC - Milieu central 1</option>
+                <option value="MC2">MC - Milieu central 2</option>
+                <option value="MD">MD - Milieu droit</option>
+                <option value="BU1">BU - Buteur 1</option>
+                <option value="BU2">BU - Buteur 2</option>
+            </select>
+        </div>
+    </template>
 </body>
 
 </html>
