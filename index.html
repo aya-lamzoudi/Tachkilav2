@@ -65,6 +65,7 @@
     <!-- start main section -->
     <main class="min-h-screen bg-[#0F172A] text-white">
         <div class="roster-page mx-auto flex max-w-[1600px] flex-col gap-6 px-4 py-6 md:px-8">
+
             <section class="header-effective flex shrink-1 justify-between">
                 <div class="title">
                     <h2 class="font-bold text-3xl">Effectif</h2>
@@ -88,16 +89,16 @@
                         placeholder="Rechercher un joueur par nom...">
                 </div>
                 <div id="position-filters"
-                    class="position-filters flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] p-1">
-                    <button type="button"
+                    class=" flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] p-1">
+                    <button type="button" id="tous"
                         class="position-filter active rounded-lg bg-[#1eba5f] px-4 py-2 font-semibold text-xs hover:bg-slate-800">Tous</button>
-                    <button type="button"
+                    <button type="button" id="Gardien"
                         class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">GB</button>
-                    <button type="button"
+                    <button type="button" id="Defenseur"
                         class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">DEF</button>
-                    <button type="button"
+                    <button type="button" id="Milieu"
                         class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">MIL</button>
-                    <button type="button"
+                    <button type="button" id="Attaquant"
                         class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">ATT</button>
                 </div>
             </section>
@@ -412,6 +413,10 @@
         </div>
 
     </main>
+     <!-- end main section -->
+ 
+
+     <!-- template of the card -->
     <template class="player-card-template" id="effectif">
         <article class="player-card hidden relative rounded-2xl border border-l-4 bg-[#1E293B] p-5">
             <span
@@ -440,7 +445,7 @@
             </div>
         </article>
     </template>
-    <!-- end main section -->
+   
 
 </body>
 

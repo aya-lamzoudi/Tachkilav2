@@ -19,7 +19,7 @@ const popupupdate = document.querySelector("#update");
 const template = document.querySelector(".player-card-template")
 
 //call the function to affiche tous les cards
-affichage(players, playerliste, template); 
+affichage(players, playerliste, template);
 
 
 // event lesener to affiche the add popup:
@@ -89,7 +89,7 @@ playerliste.addEventListener("click", function (event) {
                 players.splice(index, 1);
                 localStorage.setItem("players", JSON.stringify(players));
 
-                affichage(players, playerliste,template)
+                affichage(players, playerliste, template)
                 confirm.classList.toggle("hidden");
                 showsuccess("the player is the player is successfully removed");
             })
@@ -140,7 +140,7 @@ form.addEventListener("submit", function (event) {
         players.push(player);
         localStorage.setItem("players", JSON.stringify(players));
 
-        affichage(players, playerliste,template);
+        affichage(players, playerliste, template);
         togglepopup();
         showsuccess("the player is added with sucsses");
 
@@ -153,6 +153,7 @@ form.addEventListener("submit", function (event) {
     }
 
 })
+
 
 //edit player form:
 editform.addEventListener("submit", function (event) {
@@ -195,7 +196,7 @@ editform.addEventListener("submit", function (event) {
                 player.position = editform.querySelector(".player-position").value
                 player.status = editform.querySelector(".player-status").value;
                 localStorage.setItem("players", JSON.stringify(players));
-                affichage(players, playerliste,template);
+                affichage(players, playerliste, template);
                 updatepopup();
                 showsuccess("the player is updated with success");
             }
@@ -204,3 +205,68 @@ editform.addEventListener("submit", function (event) {
 
 });
 
+
+// add event lisner to fiter player:
+
+document.querySelector("#position-filters").addEventListener("click", (event) => {
+
+    if (event.target.id == "tous") {
+        console.log(event.target.id)
+        affichage(players, playerliste, template)
+
+        // add color of the backround:
+        document.querySelectorAll(".position-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+
+
+    } else if (event.target.id == "Gardien") {
+
+        const result = players.filter((player) => player.post == "Gardien");
+        affichage(result, playerliste, template);
+
+        // add color of the backround:
+        document.querySelectorAll(".position-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+
+
+    } else if (event.target.id == "Defenseur") {
+
+        const result = players.filter((player) => player.post == "Defenseur");
+        affichage(result, playerliste, template);
+
+        // add color of the backround:
+        document.querySelectorAll(".position-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+
+
+    } else if (event.target.id == "Milieu") {
+
+        const result = players.filter((player) => player.post == "Milieu");
+        affichage(result, playerliste, template);
+
+        // add color of the backround:
+        document.querySelectorAll(".position-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+
+
+    } else if (event.target.id == "Attaquant") {
+
+        const result = players.filter((player) => player.post == "Attaquant");
+        affichage(result, playerliste, template);
+
+        // add color of the backround:
+        document.querySelectorAll(".position-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+    }
+
+})
