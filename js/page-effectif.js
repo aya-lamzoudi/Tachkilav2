@@ -208,8 +208,99 @@ editform.addEventListener("submit", function (event) {
 
 // add event lisner to fiter player:
 
-document.querySelector("#position-filters").addEventListener("click", (event) => {
+// document.querySelector("#position-filters").addEventListener("click", (event) => {
 
+//     if (event.target.id == "tous") {
+//         console.log(event.target.id)
+//         affichage(players, playerliste, template)
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+
+//     } else if (event.target.id == "Gardien") {
+
+//         const result = players.filter((player) => player.post == "Gardien");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+
+//     } else if (event.target.id == "Defenseur") {
+
+//         const result = players.filter((player) => player.post == "Defenseur");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+
+//     } else if (event.target.id == "Milieu") {
+
+//         const result = players.filter((player) => player.post == "Milieu");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+
+//     } else if (event.target.id == "Attaquant") {
+
+//         const result = players.filter((player) => player.post == "Attaquant");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+//     }
+
+// })
+
+// add event lisner to the rrecherch input
+// let input=document.querySelector("#search-player")
+// input.addEventListener("input",()=>{
+//   let result = players.filter((player)=> player.nom == input.value )
+//   console.log(result)
+
+//   affichage(result,playerliste,template)
+// })
+
+// testing something:
+const useraction = document.querySelector(".players-area")
+
+useraction.addEventListener("click", (event) => {
+
+    // recherche 
+    if (event.target.id == "search-player") {
+        let input = document.querySelector("#search-player")
+        input.addEventListener("input", () => {
+            let result = players.filter((player) => player.nom == input.value)
+            console.log(result)
+            affichage(result, playerliste, template);
+            if (input.value == "") {
+                affichage(players, playerliste, template);
+            }
+        }
+        )
+    }
+
+
+    //filtre
     if (event.target.id == "tous") {
         console.log(event.target.id)
         affichage(players, playerliste, template)
@@ -268,5 +359,6 @@ document.querySelector("#position-filters").addEventListener("click", (event) =>
         });
         event.target.classList.add("bg-[#1eba5f]");
     }
+
 
 })

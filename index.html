@@ -82,12 +82,14 @@
             <!-- Recherche et filtres par poste -->
             <section
                 class="players-area flex flex-col gap-3 rounded-2xl border border-slate-700 bg-[#1E293B] p-4 md:flex-row md:items-center">
-                <div
+                
+                <div 
                     class="player-search flex h-12 flex-1 items-center rounded-xl border border-slate-600 bg-[#0F172A] px-4">
                     <input type="search" id="search-player" name="search-player"
                         class="h-full w-full bg-transparent text-white outline-none placeholder:text-slate-500"
                         placeholder="Rechercher un joueur par nom...">
                 </div>
+
                 <div id="position-filters"
                     class=" flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] p-1">
                     <button type="button" id="tous"
@@ -101,6 +103,7 @@
                     <button type="button" id="Attaquant"
                         class="position-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">ATT</button>
                 </div>
+
             </section>
 
             <!-- Liste des joueurs : -->
