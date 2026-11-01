@@ -128,7 +128,7 @@ useraction.addEventListener("click", (event) => {
 
     } else if (event.target.id == "upcoming") {
 
-        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() < new Date().getTime());
+        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() > new Date().getTime());
 
         affichage(result, matchliste, template);
 
@@ -141,7 +141,7 @@ useraction.addEventListener("click", (event) => {
     } else if (event.target.id == "played") {
 
 
-        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() > new Date().getTime());
+        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() < new Date().getTime());
         affichage(result, matchliste, template);
 
         // add color of the backround:
