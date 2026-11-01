@@ -101,7 +101,7 @@ export function validatedate(form){
 
    let input = form.querySelector("#date").value.trim();
    let error = form.querySelector("#date-err");
-   console.log(input)
+  
    if(input === ""){
     error.innerText = "please choose the date of the match";
    }else{
@@ -148,6 +148,11 @@ export function validatevanue(form){
         
     } else {
         error.innerText = "";
-
+       if(input=="Domicile"){
+        return true;
+       }else if(input == "exterieur"){
+        return false;
+       }
+       
     }
 }

@@ -26,7 +26,8 @@
             </div>
 
             <nav class="navbar h-[40px] flex items-center  ">
-                <ul class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
+                <ul
+                    class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
                     <li class="text-xs flex self-center rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 ">
                         <a href="index.html">Effectif</a>
                     </li>
@@ -131,18 +132,24 @@
                     </div>
 
                     <div class="match-result-area flex flex-wrap items-center justify-end gap-4">
-                        <div class="match-result flex items-center gap-3">
-                            <span class="match-score text-4xl font-extrabold text-slate-200">1 – 1</span>
+                        <div class="match-result flex items-center gap-3 ">
+                            <span class="match-score text-4xl font-extrabold text-slate-200 ">1 – 1</span>
                             <span
-                                class="match-status rounded-lg bg-slate-700 px-3 py-1 text-sm font-bold text-slate-300">Nul</span>
+                                class="match-status rounded-lg bg-slate-700 px-3 py-1 text-sm font-bold text-slate-300 ">Nul</span>
                             <button type="button"
                                 class="edit-score-btn text-sm font-bold text-blue-300 hover:text-blue-200">Modifier
                                 le score</button>
                         </div>
+
                         <div class="match-actions flex items-center gap-4">
-                            <button type="button"
-                                class="tachkila-btn rounded-xl border border-slate-600 px-4 py-2 font-bold hover:bg-slate-700">Voir
-                                la composition</button>
+                            <div class="function flex flex-col gap-3 ">
+                                <button type="button" class="tachkila-btn text-blue-500 font-bold hover:text-blue-300">
+                                    saisir la score </button>
+                                <!-- <button type="button"
+                                    class="score-btn rounded-xl border border-slate-600 px-4 py-2 font-bold hover:bg-slate-700">Voir
+                                    la composition </button> -->
+                            </div>
+
                             <button type="button" class="edit-match-btn p-2 text-slate-400 hover:text-green-400"><i
                                     class="fa-solid fa-pen" aria-hidden="true"></i></button>
                             <button type="button" class="delete-match-btn p-2 text-slate-400 hover:text-red-400"><i
@@ -153,10 +160,6 @@
 
 
             </section>
-
-
-
-
 
 
 
@@ -182,7 +185,8 @@
                     </div>
 
                     <!-- Form -->
-                    <form id="form-add-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3" novalidate>
+                    <form id="form-add-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3"
+                        novalidate>
 
                         <!-- Adversaire -->
                         <div class="col-span-full">
@@ -196,7 +200,7 @@
                             <p id="adversaire-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
 
-                       
+
 
                         <!-- date -->
                         <div>
@@ -212,10 +216,10 @@
                         <!-- heure -->
                         <div>
                             <label for="time" class="mb-1 block text-sm font-medium text-slate-200">
-                               Time
+                                Time
                             </label>
 
-                            <input type="time" id="time" name="time" 
+                            <input type="time" id="time" name="time"
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
                             <p id="time-err" class="message mt-1 text-sm text-red-400"></p>
@@ -224,10 +228,10 @@
                         <!-- location -->
                         <div class="col-span-full">
                             <label for="lieu" class="mb-1 block text-sm font-medium text-slate-200">
-                               location
+                                location
                             </label>
 
-                            <input type="text" id="location" name="location" placeholder="Safi, Morocco" 
+                            <input type="text" id="location" name="location" placeholder="Safi, Morocco"
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
                             <p id="location-err" class="message mt-1 text-sm text-red-400"></p>
@@ -297,7 +301,8 @@
 
                     <!-- Form -->
 
-                    <form id="form-update-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3" novalidate>
+                    <form id="form-update-match" class="space-y-2 grid grid-cols-[1fr_1fr] grid-row-[1fr_1fr] gap-3"
+                        novalidate>
 
                         <!-- Adversaire -->
                         <div class="col-span-full">
@@ -311,7 +316,7 @@
                             <p id="adversaire-err" class="message mt-1 text-sm text-red-400"></p>
                         </div>
 
-                       
+
 
                         <!-- date -->
                         <div>
@@ -327,10 +332,10 @@
                         <!-- heure -->
                         <div>
                             <label for="heure" class="mb-1 block text-sm font-medium text-slate-200">
-                               time
+                                time
                             </label>
 
-                            <input type="time" id="time" name="time" 
+                            <input type="time" id="time" name="time"
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
                             <p id="time" class="message mt-1 text-sm text-red-400"></p>
@@ -339,10 +344,10 @@
                         <!-- location -->
                         <div class="col-span-full">
                             <label for="lieu" class="mb-1 block text-sm font-medium text-slate-200">
-                               location
+                                location
                             </label>
 
-                            <input type="text" id="location" name="location" placeholder="Safi, Morocco" 
+                            <input type="text" id="location" name="location" placeholder="Safi, Morocco"
                                 class="w-full rounded-xl border border-slate-700 bg-[#0F172A] px-4 py-2 text-white placeholder:text-slate-500 focus:border-cyan-400">
 
                             <p id="location-err" class="message mt-1 text-sm text-red-400"></p>
@@ -399,7 +404,7 @@
                     class=" flex flex-col justify-center items-center w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-900 p-4">
 
                     <!-- Header -->
-                    <!-- <div class="mb-6 flex items-center justify-between gap-4">
+            <!-- <div class="mb-6 flex items-center justify-between gap-4">
                         <div>
                             <h2 class="text-2xl font-bold text-white">
                                 message de confirmation:
@@ -420,11 +425,60 @@
 
                 </div>
             </section> -->
- 
+
+
+            <template class="match-template">
+                <article
+                    class="match-card flex flex-col gap-5 rounded-2xl border border-slate-700 bg-[#1E293B] p-5 md:flex-row md:items-center md:justify-between">
+                    <div class="match-details flex min-w-0 items-center gap-5">
+                        <div
+                            class="match-date flex min-h-[125px] w-[100px] flex-col items-center justify-center rounded-xl bg-[#0F172A] text-center">
+                            <span class="date-day-name text-sm font-bold text-blue-300">SAM</span>
+                            <span class="date-day text-3xl font-bold">17</span>
+                            <span class="date-month text-sm font-bold">OCT</span>
+                            <span class="date-time mt-1 text-sm text-slate-400">16:30</span>
+                        </div>
+                        <div class="match-info min-w-0">
+                            <span
+                                class="match-status rounded-lg bg-slate-700 px-3 py-1 text-sm font-semibold text-slate-300">
+                                Extérieur</span>
+                            <h2 class="match-title mt-2 text-xl font-bold">Racing Cèdre vs Atlas FC</h2>
+                            <p class="mt-2 flex items-center gap-2 text-slate-400">
+                                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                <span id="match-location">Complexe Al Amal</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="match-result-area flex flex-wrap items-center justify-end gap-4">
+                        <div class="match-result flex items-center gap-3 hidden">
+                            <span class="match-score text-4xl font-extrabold text-slate-200 ">1 – 1</span>
+                            <span
+                                class="match-status rounded-lg bg-slate-700 px-3 py-1 text-sm font-bold text-slate-300 ">Nul</span>
+                            <button type="button"
+                                class="edit-score-btn text-sm font-bold text-blue-300 hover:text-blue-200">Modifier
+                                le score</button>
+                        </div>
+
+                        <div class="match-actions flex items-center gap-4">
+                            <div class="function flex flex-col gap-3 hidden">
+                                <button type="button" class="tachkila-btn text-blue-500 font-bold hover:text-blue-300">
+                                    saisir la score </button>
+                                <!-- <button type="button"
+                                    class="score-btn rounded-xl border border-slate-600 px-4 py-2 font-bold hover:bg-slate-700">Voir
+                                    la composition </button> -->
+                            </div>
+
+                            <button type="button" class="edit-match-btn p-2 text-slate-400 hover:text-green-400"><i
+                                    class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                            <button type="button" class="delete-match-btn p-2 text-slate-400 hover:text-red-400"><i
+                                    class="fa-solid fa-trash-can" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </article>
+            </template>
 
         </div>
-
-
 
     </main>
 
