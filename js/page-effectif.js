@@ -3,7 +3,7 @@
 import { validatename, validatepost, validatenbr, validateage, validatestatus, validateeditnbr } from "./validation.js";
 import { togglepopup, updatepopup, showsuccess } from "./interface.js";
 import { players, chnageId } from "./stockage.js";
-import { affichage } from "./joueurs.js";
+import { affichage, statistique } from "./joueurs.js";
 
 
 
@@ -356,3 +356,4 @@ useraction.addEventListener("click", (event) => {
 })
 
 console.log(players)
+//  statistique(players)
