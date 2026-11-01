@@ -41,12 +41,13 @@ popupupdate.addEventListener("click", function (event) {
 })
 
 
-// add event lisner sur container of the card to detect the target event of update & delete:
+// add event lisner sur container of the card to detect the target event of update & delete & capitane:
 playerliste.addEventListener("click", function (event) {
     event.preventDefault();
 
     const editBtn = event.target.closest(".edit-player-btn");
     const deleteBtn = event.target.closest(".delete-player-btn");
+    const captanebtn = event.target.closest(".captain-btn");
 
     if (editBtn) {
         updatepopup()
@@ -94,6 +95,22 @@ playerliste.addEventListener("click", function (event) {
         }
         console.log(players)
     }
+
+    if(captanebtn){
+        let tenue= captanebtn.closest(".player-card").querySelector(".player-number").innerText;
+        players.forEach(player => {
+            if(player.numero==tenue){
+                player.capitane=true;
+            }else {
+                player.capitane=false;
+            }
+        });
+        localStorage.setItem("players", JSON.stringify(players));
+        affichage(players, playerliste, template)
+
+        
+       
+    }
 });
 
 
@@ -129,6 +146,7 @@ form.addEventListener("submit", function (event) {
             numero: form.querySelector("#nbr").value,
             age: form.querySelector("#age").value,
             position: "bench",
+            capitane:false
         }
 
         console.log(player)

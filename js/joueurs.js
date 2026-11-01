@@ -49,7 +49,13 @@ export function affichage(players, liste, template) {
         if (template.id == "effectif") {
             card.querySelector("#player-age").innerText = player.age;
             card.querySelector(".player-status").innerText = player.status;
-           
+
+            if (player.capitane) {
+                card.querySelector(".captain-btn").classList.add("bg-purple-500");
+                card.querySelector(".captain-btn").classList.remove("hover:text-purple-500");
+                card.querySelector(".captain-badge ").classList.remove("hidden")
+            }
+            statistique(players)
         }
 
         //check colors:
@@ -64,7 +70,7 @@ export function affichage(players, liste, template) {
                    <option value="BU1">BU - Buteur 1</option>
                    <option value="BU2">BU - Buteur 2</option>
                   `
-                  card.querySelector("select").value=player.position;
+                card.querySelector("select").value = player.position;
             }
 
         } else if (player.post == "Milieu") {
@@ -79,7 +85,7 @@ export function affichage(players, liste, template) {
                   <option value="MC2">MC - Milieu central 2</option>
                   <option value="MD">MD - Milieu droit</option>
                   `
-                  card.querySelector("select").value=player.position;
+                card.querySelector("select").value = player.position;
             }
 
         } else if (player.post == "Defenseur") {
@@ -94,7 +100,7 @@ export function affichage(players, liste, template) {
                   <option value="DC2">DC - Défenseur central 2</option>
                   <option value="DD">DD - Défenseur droit</option>
                   `
-                  card.querySelector("select").value=player.position;
+                card.querySelector("select").value = player.position;
             }
         } else if (player.post == "Gardien") {
             card.classList.toggle("border-orange-400");
@@ -105,13 +111,17 @@ export function affichage(players, liste, template) {
                     <option value="bench" selected>Sur le banc</option>
                   <option value="GB">GB - Gardien</option>
                   `
-                  card.querySelector("select").value=player.position;
+                card.querySelector("select").value = player.position;
             }
         }
+
+
+
         card.classList.remove("hidden")
         liste.appendChild(card);
 
-         statistique(players)
+
+
     });
 }
 
@@ -198,10 +208,10 @@ export function affichage(players, liste, template) {
 
 //statistique
 
-export function statistique(players){
- 
-    let cards=document.querySelector(".statistique");
-     cards.querySelector(".totale-nbr").innerText=players.length;
+export function statistique(players) {
+
+    let cards = document.querySelector(".statistique");
+    cards.querySelector(".totale-nbr").innerText = players.length;
     //  let f=0;
     //  let b=0;
     // players.forEach(player=>{
@@ -211,7 +221,7 @@ export function statistique(players){
     //         f=f+1
     //     }
     // })
-    cards.querySelector(".form-nbr").innerText=players.filter(player=> player.status=="En form").length;
-    cards.querySelector(".blesse-nbr").innerText= players.filter(player => player.status === "En blesse").length;
-    cards.querySelector(".age-moyen").innerText= players.reduce((acc, player)=> acc+ Number(player.age),0)/players.length + " ans"
+    cards.querySelector(".form-nbr").innerText = players.filter(player => player.status == "En form").length;
+    cards.querySelector(".blesse-nbr").innerText = players.filter(player => player.status === "En blesse").length;
+    cards.querySelector(".age-moyen").innerText = (players.reduce((acc, player) => acc + Number(player.age), 0) / players.length).toFixed(2) + " ans"
 }
