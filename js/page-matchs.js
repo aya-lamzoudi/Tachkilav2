@@ -3,7 +3,7 @@
 import { matches, chnagematchId } from "./stockage.js";
 import { togglepopup, updatepopup, showsuccess } from "./interface.js";
 import { validateadversaire, validatedate, validatetime, validatevanue, validatelocation } from "./validation.js";
-import {affichage  } from "./matchs.js";
+import { affichage } from "./matchs.js";
 
 
 //declaration de variables:
@@ -11,10 +11,10 @@ const popup = document.querySelector("#popup");
 const popupupdate = document.querySelector("#update");
 const form = document.querySelector("#form-add-match");
 const editform = document.querySelector("#form-update-match");
-const matchliste= document.querySelector("#matches-list"); 
+const matchliste = document.querySelector("#matches-list");
 const template = document.querySelector(".match-template");
 
-affichage(matches,matchliste,template)
+affichage(matches, matchliste, template)
 
 
 // event lisner for button d'ajouter
@@ -74,8 +74,8 @@ form.addEventListener("submit", function (event) {
         matches.push(matche);
         localStorage.setItem("matches", JSON.stringify(matches));
 
-        affichage(matches,matchliste,template)
-        // affichage(players, playerliste, template);
+        affichage(matches, matchliste, template)
+        // affichage(matches, matcheliste, template);
         togglepopup();
         showsuccess("the match is added with sucsses");
 
@@ -83,10 +83,74 @@ form.addEventListener("submit", function (event) {
         form.querySelector("#adversaire").value = "";
         form.querySelector("#date").value = "";
         form.querySelector("#location").value = "";
-        form.querySelector(".player-position").value = "";
+        form.querySelector(".matche-position").value = "";
 
     }
 
 })
 
-console.log(matches)
+console.log(matches);
+
+
+//filtrage && recherch:
+
+const useraction = document.querySelector(".matches-result")
+
+useraction.addEventListener("click", (event) => {
+
+    // recherche 
+    console.log(event.target.id)
+    if (event.target.id == "search-match") {
+        let input = document.querySelector("#search-match")
+        input.addEventListener("input", () => {
+            let result = matches.filter((match) => match.adversaire == input.value)
+            console.log(result)
+            affichage(result, matchliste, template);
+            if (input.value == "") {
+                affichage(matches, matchliste, template);
+            }
+        }
+        )
+    }
+
+
+    //filtre
+    if (event.target.id == "all") {
+        console.log(event.target.id)
+        affichage(matches, matchliste, template);
+
+        // add color of the backround:
+        document.querySelectorAll(".match-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+
+
+    } else if (event.target.id == "upcoming") {
+
+        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() < new Date().getTime());
+
+        affichage(result, matchliste, template);
+
+        // add color of the backround:
+        document.querySelectorAll(".match-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+
+    } else if (event.target.id == "played") {
+
+
+        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() > new Date().getTime());
+        affichage(result, matchliste, template);
+
+        // add color of the backround:
+        document.querySelectorAll(".match-filter").forEach(element => {
+            element.classList.remove("bg-[#1eba5f]");
+        });
+        event.target.classList.add("bg-[#1eba5f]");
+
+
+    }
+
+})

@@ -82,24 +82,24 @@
             <!-- Barre de filtres et recherche -->
             <section
                 class="matches-result flex flex-col gap-3 rounded-2xl border border-slate-700 bg-[#1E293B] p-4 md:flex-row md:items-center">
-                <div class="match-filters flex items-center gap-1 rounded-xl bg-[#0F172A] p-1">
-                    <button type="button" id="filter-all"
-                        class="match-filter btn-active rounded-lg bg-green-600 px-4 py-2 font-bold">
+                <div class="match-filters flex items-center gap-1 rounded-xl bg-[#0F172A] p-2">
+                    <button type="button" id="all"
+                        class="match-filter rounded-lg bg-[#1eba5f] px-4 py-2 font-bold text-xs hover:bg-slate-800">
                         Tous <span id="count-all" class="ml-1 rounded bg-[#064E3B] px-2">8</span>
                     </button>
-                    <button type="button" id="filter-upcoming"
-                        class="match-filter rounded-lg px-4 py-2 font-bold hover:bg-slate-800">
+                    <button type="button" id="upcoming"
+                        class="match-filter rounded-lg px-3 py-2 font-bold hover:bg-slate-800 text-xs">
                         À venir <span id="count-upcoming" class="ml-1 rounded bg-slate-900 px-2">2</span>
                     </button>
-                    <button type="button" id="filter-played"
-                        class="match-filter rounded-lg px-4 py-2 font-bold hover:bg-slate-800">
+                    <button type="button" id="played"
+                        class="match-filter rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">
                         Joués <span id="count-played" class="ml-1 rounded bg-slate-900 px-2">6</span>
                     </button>
                 </div>
 
                 <div
                     class="match-search flex h-12 flex-1 items-center rounded-xl border border-slate-600 bg-[#0F172A] px-4">
-                    <input type="search" id="search-add" name="search-add"
+                    <input type="search" id="search-match" name="search-match"
                         class="h-full w-full text-white outline-none placeholder:text-slate-500"
                         placeholder="Rechercher un adversaire...">
                 </div>

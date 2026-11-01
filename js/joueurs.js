@@ -17,7 +17,6 @@ export function pitch(players) {
     });
 
 
-
     // add the player to the pitch
     players.forEach(player => {
 
@@ -25,7 +24,6 @@ export function pitch(players) {
 
 
             let path = document.querySelector(`.${player.position}`);
-            console.log(path)
             if (path) {
                 path.querySelector(".player-name-position").innerText = player.nom
                 path.querySelector(".number").innerText = player.numero;
@@ -62,11 +60,11 @@ export function affichage(players, liste, template) {
             card.querySelector(".player-position").classList.toggle("text-[#d75241]");
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
-                   <option value="bench" selected>Sur le banc</option>
+                   <option value="bench" >Sur le banc</option>
                    <option value="BU1">BU - Buteur 1</option>
                    <option value="BU2">BU - Buteur 2</option>
                   `
-                  card.querySelector('select').value=player.position;
+                  card.querySelector("select").value=player.position;
             }
 
         } else if (player.post == "Milieu") {
@@ -75,13 +73,13 @@ export function affichage(players, liste, template) {
             card.querySelector(".player-position").classList.toggle("text-[#20d244]");
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
-                  <option value="bench" selected>Sur le banc</option>
+                  <option value="bench" >Sur le banc</option>
                   <option value="MG">MG - Milieu gauche</option>
                   <option value="MC1">MC - Milieu central 1</option>
                   <option value="MC2">MC - Milieu central 2</option>
                   <option value="MD">MD - Milieu droit</option>
                   `
-                  card.querySelector('select').value=player.position;
+                  card.querySelector("select").value=player.position;
             }
 
         } else if (player.post == "Defenseur") {
@@ -90,13 +88,13 @@ export function affichage(players, liste, template) {
             card.querySelector(".player-position").classList.toggle("text-[#3AC8EF]");
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
-                    <option value="bench" selected>Sur le banc</option>
+                  <option value="bench" >Sur le banc</option>
                   <option value="DG">DG - Défenseur gauche</option>
                   <option value="DC1">DC - Défenseur central 1</option>
                   <option value="DC2">DC - Défenseur central 2</option>
                   <option value="DD">DD - Défenseur droit</option>
                   `
-                  card.querySelector('select').value=player.position;
+                  card.querySelector("select").value=player.position;
             }
         } else if (player.post == "Gardien") {
             card.classList.toggle("border-orange-400");
@@ -107,7 +105,7 @@ export function affichage(players, liste, template) {
                     <option value="bench" selected>Sur le banc</option>
                   <option value="GB">GB - Gardien</option>
                   `
-                  card.querySelector('select').value=player.position;
+                  card.querySelector("select").value=player.position;
             }
         }
         card.classList.remove("hidden")

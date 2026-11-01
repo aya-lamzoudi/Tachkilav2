@@ -41,7 +41,7 @@ export function affichage(matches,liste,template){
           card.querySelector(".function").classList.remove("hidden")
         }else{
           console.log("the match still did not hapened");
-          card.querySelector(".match-result").classList.remove("hidden")
+          // card.querySelector(".match-result").classList.remove("hidden")
         }
 
 
@@ -55,3 +55,5 @@ export function affichage(matches,liste,template){
     });
 
 }
+
+
