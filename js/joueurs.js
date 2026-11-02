@@ -19,6 +19,12 @@ export function pitch(players) {
 
     // add the player to the pitch
     players.forEach(player => {
+        console.log("test", player.status)
+
+        if (player.status == "En blesse") {
+            player.position = "bench"
+        }
+        console.log("test2", player.position)
 
         if (player.position != "bench") {
 
@@ -28,12 +34,14 @@ export function pitch(players) {
                 path.querySelector(".player-name-position").innerText = player.nom
                 path.querySelector(".number").innerText = player.numero;
                 path.querySelector(".number").classList.remove("hidden");
-                
+
                 console.log(player.position)
             }
 
         }
     });
+    localStorage.setItem("players", JSON.stringify(players));
+
 }
 
 
@@ -56,7 +64,14 @@ export function affichage(players, liste, template) {
                 card.querySelector(".captain-btn").classList.remove("hover:text-purple-500");
                 card.querySelector(".captain-badge ").classList.remove("hidden")
             }
-            statistique(players)
+            statistique(players);
+        }
+        if (template.id == "composition") {
+            if (player.status == "En blesse") {
+                card.querySelector(".player-status").classList.remove("hidden")
+            }
+
+
         }
 
         //check colors:

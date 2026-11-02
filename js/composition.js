@@ -59,6 +59,7 @@ playerlist.addEventListener("change",(e)=>{
                 }
                localStorage.setItem("players", JSON.stringify(players));
                  pitch(players);
+                 affichage(players,playerlist,template);
                  
 })
 

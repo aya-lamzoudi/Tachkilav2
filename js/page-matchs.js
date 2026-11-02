@@ -204,7 +204,7 @@ scoreform.addEventListener("submit", (e) => {
         }
         localStorage.setItem("matches", JSON.stringify(matches));
         affichage(matches, matchliste, template);
-        document.querySelector("#score").classList.remove("hidden");
+        document.querySelector("#score").classList.add("hidden");
     });
 
 })
