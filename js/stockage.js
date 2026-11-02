@@ -11,5 +11,5 @@ export function chnageId() {
 export function chnagematchId() {
     matchId++;
     localStorage.setItem("matchId", JSON.stringify(matchId));
-    return id;
+    return matchId;
 }

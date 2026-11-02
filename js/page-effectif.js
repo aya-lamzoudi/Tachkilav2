@@ -96,20 +96,20 @@ playerliste.addEventListener("click", function (event) {
         console.log(players)
     }
 
-    if(captanebtn){
-        let tenue= captanebtn.closest(".player-card").querySelector(".player-number").innerText;
+    if (captanebtn) {
+        let tenue = captanebtn.closest(".player-card").querySelector(".player-number").innerText;
         players.forEach(player => {
-            if(player.numero==tenue){
-                player.capitane=true;
-            }else {
-                player.capitane=false;
+            if (player.numero == tenue) {
+                player.capitane = true;
+            } else {
+                player.capitane = false;
             }
         });
         localStorage.setItem("players", JSON.stringify(players));
         affichage(players, playerliste, template)
 
-        
-       
+
+
     }
 });
 
@@ -146,7 +146,7 @@ form.addEventListener("submit", function (event) {
             numero: form.querySelector("#nbr").value,
             age: form.querySelector("#age").value,
             position: "bench",
-            capitane:false
+            capitane: false
         }
 
         console.log(player)
@@ -299,7 +299,7 @@ useraction.addEventListener("click", (event) => {
     if (event.target.id == "search-player") {
         let input = document.querySelector("#search-player")
         input.addEventListener("input", () => {
-            let result = players.filter((player) => player.nom == input.value)
+            let result = players.filter((player) => player.nom.startsWith(input.value))
             console.log(result)
             affichage(result, playerliste, template);
             if (input.value == "") {

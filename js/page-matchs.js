@@ -13,7 +13,9 @@ const form = document.querySelector("#form-add-match");
 const editform = document.querySelector("#form-update-match");
 const matchliste = document.querySelector("#matches-list");
 const template = document.querySelector(".match-template");
-
+const scoreform = document.querySelector("#score");
+const scoreeditform = document.querySelector("#edit-score");
+let matchid;
 affichage(matches, matchliste, template)
 
 
@@ -29,8 +31,9 @@ popup.addEventListener("click", function (event) {
 
 // add event lisner to the update popup so we can close & annuler:
 popupupdate.addEventListener("click", function (event) {
-    if (event.target.id == "close-popup" || event.target.id == "popup-cancel") {
+    if (event.target.id == "close-match-btn" || event.target.id == "popup-cancel") {
         updatepopup();
+
     }
 })
 
@@ -57,7 +60,6 @@ form.addEventListener("submit", function (event) {
 
     if (!haserror) {
 
-
         let matche = {
             id: chnagematchId(),
             adversaire: form.querySelector("#adversaire").value,
@@ -72,6 +74,7 @@ form.addEventListener("submit", function (event) {
 
         console.log(matche)
         matches.push(matche);
+
         localStorage.setItem("matches", JSON.stringify(matches));
 
         affichage(matches, matchliste, template)
@@ -83,11 +86,146 @@ form.addEventListener("submit", function (event) {
         form.querySelector("#adversaire").value = "";
         form.querySelector("#date").value = "";
         form.querySelector("#location").value = "";
-        form.querySelector(".matche-position").value = "";
+        form.querySelector(".time").value = "";
 
     }
 
 })
+
+
+//add event lisner sur scor form do annuler and delect saisir:
+
+scoreform.addEventListener("click", (event) => {
+    if (event.target.id == "close-btn" || event.target.id == "popup-cancel") {
+        document.querySelector("#score").classList.add("hidden");
+    }
+})
+
+//add event lisner sur edit-scor form do annuler and delect saisir:
+
+document.querySelector("#score-edit-popup").addEventListener("click", (event) => {
+    if (event.target.id == "close-btn" || event.target.id == "popup-cancel") {
+        document.querySelector("#score-edit-popup").classList.add("hidden");
+    }
+})
+
+
+// add event lisner sur tout les card de match:(cantainer of them)
+
+matchliste.addEventListener("click", (event) => {
+
+    const editBtn = event.target.closest(".edit-match-btn");
+    const deleteBtn = event.target.closest(".delete-match-btn");
+    const choosescore = event.target.closest(".score-btn");
+    const editscore = event.target.closest(".edit-score-btn");
+
+
+    if (editBtn) {
+        updatepopup();
+        let card = editBtn.closest(".match-card");
+        console.log(card)
+        matches.forEach(matche => {
+            if (matche.id == card.dataset.id) {
+                editform.querySelector("#adversaire").value = matche.adversaire
+                editform.querySelector("#date").value = matche.date;
+                editform.querySelector("#location").value = matche.location;
+                editform.querySelector("#time").value = matche.time;
+                if (matche.domicile) {
+                    editform.querySelector("select").value = "Domicile"
+                } else {
+                    editform.querySelector("select").value = "exterieur"
+                }
+
+            }
+        })
+    }
+
+    if (deleteBtn) {
+
+        const confirm = document.querySelector("#confirm");
+        confirm.classList.toggle("hidden");
+        let card = deleteBtn.closest(".match-card");
+        console.log(card);
+
+        matchid = card.dataset.id;
+        let index = matches.findIndex(match => match.id == matchid);
+        if (index !== -1) {
+            confirm.querySelector("#cancelDelete").addEventListener("click", () => {
+                console.log("first", confirm);
+                confirm.classList.add("hidden");  //cencel the delete
+                console.log("second", confirm);
+                console.log("test");
+
+            })
+            confirm.querySelector("#confirmDelete").addEventListener("click", () => {
+
+                matches.splice(index, 1);
+                localStorage.setItem("matches", JSON.stringify(matches));
+
+                affichage(matches, matchliste, template)
+                confirm.classList.toggle("hidden");
+                showsuccess("this match is successfully removed");
+            })
+
+        }
+    }
+    if (choosescore) {
+        document.querySelector("#score").classList.remove("hidden");
+        let card = choosescore.closest(".match-card");
+        console.log(card);
+        matchid = card.dataset.id;
+    }
+    if(editscore){
+        document.querySelector("#score-edit-popup").classList.remove("hidden");
+        let card = editscore.closest(".match-card");
+         matchid = card.dataset.id;
+        console.log(card)
+        matches.forEach(matche => {
+            if (matche.id == card.dataset.id) {
+                scoreeditform.querySelector("#atlas-but").value = matche.butAtlas
+                scoreeditform.querySelector("#adversaire-but").value = matche.butadversaire;
+
+            }
+        })
+    }
+
+})
+
+
+//event lisner sur popup scote:
+
+scoreform.addEventListener("submit", (e) => {
+    e.preventDefault();
+    matches.forEach(matche => {
+        if (matche.id == matchid) {
+            matche.butadversaire = scoreform.querySelector("#adversaire-but").value;
+            matche.butAtlas = scoreform.querySelector("#atlas-but").value;
+
+        }
+        localStorage.setItem("matches", JSON.stringify(matches));
+        affichage(matches, matchliste, template);
+        document.querySelector("#score").classList.remove("hidden");
+    });
+
+})
+
+//event lisner sur popup edit score
+scoreeditform.addEventListener("submit",(e)=>{
+    e.preventDefault();
+
+        matches.forEach(matche => {
+        if (matche.id == matchid) {
+            matche.butadversaire = scoreeditform.querySelector("#adversaire-but").value;
+            matche.butAtlas = scoreeditform.querySelector("#atlas-but").value;
+
+        }
+        localStorage.setItem("matches", JSON.stringify(matches));
+        affichage(matches, matchliste, template);
+        document.querySelector("#score-edit-popup").classList.add("hidden")
+    });
+})
+
+
 
 console.log(matches);
 
@@ -103,7 +241,7 @@ useraction.addEventListener("click", (event) => {
     if (event.target.id == "search-match") {
         let input = document.querySelector("#search-match")
         input.addEventListener("input", () => {
-            let result = matches.filter((match) => match.adversaire == input.value)
+            let result = matches.filter((match) => match.adversaire.startsWith(input.value));
             console.log(result)
             affichage(result, matchliste, template);
             if (input.value == "") {
