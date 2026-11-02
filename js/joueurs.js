@@ -28,6 +28,7 @@ export function pitch(players) {
                 path.querySelector(".player-name-position").innerText = player.nom
                 path.querySelector(".number").innerText = player.numero;
                 path.querySelector(".number").classList.remove("hidden");
+                
                 console.log(player.position)
             }
 
