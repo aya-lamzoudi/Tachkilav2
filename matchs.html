@@ -68,15 +68,54 @@
 
         <div class="matches-page mx-4 flex flex-col gap-6 py-5 md:mx-10">
 
-            <section class="header-matches flex shrink-1 justify-between">
-                <div class="title">
-                    <h2 class="font-bold text-3xl">Matchs</h2>
-                    <p class="text-slate-400">Calendrier et resultats de la saison 2026/1027</p>
+            <section class="header-matches ">
+                <div class="titleconainer flex shrink-1 justify-between">
+                    <div class="title">
+                        <h2 class="font-bold text-3xl">Matchs</h2>
+                        <p class="text-slate-400">Calendrier et resultats de la saison 2026/1027</p>
+                    </div>
+                    <button type="button" id="add-match"
+                        class="add-match-btn bg-[#1eba5f] text-gray-50 lg:w-[250px] lg:h-[30px] rounded-[10px] mt-[15px] mb-[10px] font-bold md:w-[400px]  md:self-center">
+                        + Ajouter un Match
+                    </button>
                 </div>
-                <button type="button" id="add-match"
-                    class="add-match-btn bg-[#1eba5f] text-gray-50 lg:w-[250px] lg:h-[30px] rounded-[10px] mt-[15px] mb-[10px] font-bold md:w-[400px]  md:self-center">
-                    + Ajouter un Match
-                </button>
+
+                <div
+                    class="match-statistique grid lg:grid-cols-5 my-6  gap-3 justify-between items-center min-[481px]:grid-cols-4 max-[480px]:grid-cols-2">
+                    <div class="victoire bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
+                        <p class="text-slate-400">Victoire</p>
+                        <span class="victoire-nbr text-3xl font-bold">
+                            15
+                        </span>
+                    </div>
+                    <div class="nul bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
+                        <p class="text-slate-400 ">Nul</p>
+                        <span class="nul-nbr text-3xl font-bold">
+                            15
+                        </span>
+                    </div>
+                    <div class="defaite bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
+                        <p class="text-slate-400">defaites</p>
+                        <span class="defaite-nbr text-3xl font-bold">
+                            15
+                        </span>
+                    </div>
+                    <div class="but-marque bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
+                        <p class="text-slate-400">Buts marques</p>
+                        <span class="but-marque text-3xl font-bold">
+                            15
+                        </span>
+                    </div>
+                    <div class="but-encaise bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
+                        <p class="text-slate-400">Buts encaisses</p>
+                        <span class="but-encaise text-3xl font-bold">
+                            15
+                        </span>
+                    </div>
+                </div>
+
+
+
             </section>
 
             <!-- Barre de filtres et recherche -->

@@ -70,8 +70,6 @@ export function affichage(players, liste, template) {
             if (player.status == "En blesse") {
                 card.querySelector(".player-status").classList.remove("hidden")
             }
-
-
         }
 
         //check colors:
@@ -82,7 +80,7 @@ export function affichage(players, liste, template) {
             card.querySelector(".player-position").classList.toggle("text-[#d75241]");
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
-                   <option value="bench" >Sur le banc</option>
+                   <option value="bench" selected >Sur le banc</option>
                    <option value="BU1">BU - Buteur 1</option>
                    <option value="BU2">BU - Buteur 2</option>
                   `
@@ -95,7 +93,7 @@ export function affichage(players, liste, template) {
             card.querySelector(".player-position").classList.toggle("text-[#20d244]");
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
-                  <option value="bench" >Sur le banc</option>
+                  <option value="bench" selected>Sur le banc</option>
                   <option value="MG">MG - Milieu gauche</option>
                   <option value="MC1">MC - Milieu central 1</option>
                   <option value="MC2">MC - Milieu central 2</option>
@@ -110,7 +108,7 @@ export function affichage(players, liste, template) {
             card.querySelector(".player-position").classList.toggle("text-[#3AC8EF]");
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
-                  <option value="bench" >Sur le banc</option>
+                  <option value="bench" selected >Sur le banc</option>
                   <option value="DG">DG - Défenseur gauche</option>
                   <option value="DC1">DC - Défenseur central 1</option>
                   <option value="DC2">DC - Défenseur central 2</option>

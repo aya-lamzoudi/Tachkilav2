@@ -67,7 +67,7 @@ export function affichage(matches,liste,template){
             card.querySelector(".matche-status").classList.add("text-slate-300");
             card.querySelector(".matche-status").innerText="Nul";
          }
-
+              statistique(matches)
 
         }
         else{
@@ -76,15 +76,24 @@ export function affichage(matches,liste,template){
         }
 
 
-
-
-
         card.classList.remove("hidden");
         liste.appendChild(card);
-
-
+          
     });
 
 }
 
+//statistique
 
+export function statistique(matches) {
+
+    let cards = document.querySelector(".match-statistique");
+    // cards.querySelector(".victoire-nbr").innerText = ;
+    // cards.querySelector(".nul-nbr").innerText = ;
+    // cards.querySelector(".defaite").innerText =
+    
+    // cards.querySelector(".but-marque").innerText=but
+    // cards.querySelector(".but-marque").innerText = (matches.reduce((acc, matche) => acc + Number(matche.butsAtlas), 0))
+    // cards.querySelector(".but-encaise").innerText =(matches.reduce((acc, matche) => acc + Number(matche.butsAdversaire), 0))
+    // cards.querySelector(".defaite").innerText = 
+}

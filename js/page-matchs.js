@@ -16,6 +16,7 @@ const template = document.querySelector(".match-template");
 const scoreform = document.querySelector("#score");
 const scoreeditform = document.querySelector("#edit-score");
 let matchid;
+let editid;
 affichage(matches, matchliste, template)
 
 
@@ -93,6 +94,56 @@ form.addEventListener("submit", function (event) {
 })
 
 
+
+//edit match form:
+editform.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    validateadversaire(editform);
+    validatedate(editform);
+    validatetime(editform);
+    validatevanue(editform);
+
+    validatelocation(editform);
+    // check errors
+
+    let errors = editform.querySelectorAll(".message");
+    let haserror = false;
+    errors.forEach(error => {
+        if (error.innerText !== "") {
+            haserror = true;
+        }
+    });
+
+
+    if (!haserror) {
+        matches.forEach(matche => {
+            console.log(matchid)
+            if (matche.id == matchid) {
+                matche.adversaire = editform.querySelector("#adversaire").value
+                matche.date = editform.querySelector("#date").value
+                matche.location = editform.querySelector("#location").value
+                matche.time = editform.querySelector("#time").value
+            }
+        });
+
+
+
+
+        localStorage.setItem("matches", JSON.stringify(matches));
+
+        affichage(matches, matchliste, template)
+        // affichage(matches, matcheliste, template);
+        updatepopup();
+        showsuccess("the match is updated with sucsses");
+
+
+
+    }
+
+})
+
+
 //add event lisner sur scor form do annuler and delect saisir:
 
 scoreform.addEventListener("click", (event) => {
@@ -124,6 +175,7 @@ matchliste.addEventListener("click", (event) => {
         updatepopup();
         let card = editBtn.closest(".match-card");
         console.log(card)
+        matchid = card.dataset.id;
         matches.forEach(matche => {
             if (matche.id == card.dataset.id) {
                 editform.querySelector("#adversaire").value = matche.adversaire
@@ -175,10 +227,10 @@ matchliste.addEventListener("click", (event) => {
         console.log(card);
         matchid = card.dataset.id;
     }
-    if(editscore){
+    if (editscore) {
         document.querySelector("#score-edit-popup").classList.remove("hidden");
         let card = editscore.closest(".match-card");
-         matchid = card.dataset.id;
+        matchid = card.dataset.id;
         console.log(card)
         matches.forEach(matche => {
             if (matche.id == card.dataset.id) {
@@ -210,10 +262,10 @@ scoreform.addEventListener("submit", (e) => {
 })
 
 //event lisner sur popup edit score
-scoreeditform.addEventListener("submit",(e)=>{
+scoreeditform.addEventListener("submit", (e) => {
     e.preventDefault();
 
-        matches.forEach(matche => {
+    matches.forEach(matche => {
         if (matche.id == matchid) {
             matche.butadversaire = scoreeditform.querySelector("#adversaire-but").value;
             matche.butAtlas = scoreeditform.querySelector("#atlas-but").value;

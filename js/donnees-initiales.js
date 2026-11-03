@@ -19,6 +19,6 @@ const match = [
         domicile: true, // true = Domicile, false
         butsAtlas: 3,   // null tant que le score
         butsAdversaire: 1,    // null tant que le score 
-
+        
     }
 ]
