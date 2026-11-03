@@ -6,7 +6,8 @@ import { players, chnageId } from "./stockage.js";
 import { affichage, statistique } from "./joueurs.js";
 
 
-
+export let parPage = 8;
+export let page = 1;
 
 //declaration
 const addplayerbtn = document.querySelector("#add-player");
@@ -373,5 +374,15 @@ useraction.addEventListener("click", (event) => {
 
 })
 
-console.log(players)
-//  statistique(players)
+
+//  pagination:
+
+     document.querySelector("#previous-page").addEventListener("click", () => {
+          page--;
+          affichage (players, playerliste, template);
+});
+
+     document.querySelector("#next-page").addEventListener("click", () => {
+          page++;
+          affichage (players, playerliste, template);
+});
