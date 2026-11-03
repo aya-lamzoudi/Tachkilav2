@@ -4,51 +4,10 @@ import { page, parPage } from "./page-effectif.js"
 
 //aficher player in the pitch
 
-export function pitch(players) {
-    //reset all html to none:
-
-    document.querySelectorAll(".number").forEach(element => {
-        element.innerHTML = "";
-        element.classList.add("hidden");
-    });
-
-    document.querySelectorAll(".player-name-position").forEach(element => {
-        element.innerHTML = "libre";
-    });
-
-
-    // add the player to the pitch
-    players.forEach(player => {
-        console.log("test", player.status)
-
-        if (player.status == "En blesse") {
-            player.position = "bench"
-        }
-        console.log("test2", player.position)
-
-        if (player.position != "bench") {
-
-
-            let path = document.querySelector(`.${player.position}`);
-            if (path) {
-                path.querySelector(".player-name-position").innerText = player.nom
-                path.querySelector(".number").innerText = player.numero;
-                path.querySelector(".number").classList.remove("hidden");
-
-                console.log(player.position)
-            }
-
-        }
-    });
-    localStorage.setItem("players", JSON.stringify(players));
-
-}
-
-
 
 // afficher les jouer in page effective:
 export function affichage(players, liste, template) {
-
+    console.log(null + 0)
     liste.innerHTML = ``;
     const debut = (page - 1) * parPage;
     let playersAffiche = players.slice(debut, debut + parPage);
@@ -56,7 +15,7 @@ export function affichage(players, liste, template) {
     let totalPages = Math.ceil(players.length / parPage)
 
     document.querySelector("#page-count").innerText = `${page} / ${totalPages}`
-
+    document.querySelector("#players-count").innerText = ` Affichage de ${debut + parPage} sur ${players.length} joueurs `
     document.querySelector("#previous-page").disabled = page <= 1;
     document.querySelector("#next-page").disabled = page >= totalPages;
 
@@ -68,22 +27,17 @@ export function affichage(players, liste, template) {
         card.querySelector(".player-number").innerText = player.numero;
         card.querySelector(".player-name").innerText = player.nom;
         card.querySelector(".player-position").innerText = player.post;
-        if (template.id == "effectif") {
-            card.querySelector("#player-age").innerText = player.age;
-            card.querySelector(".player-status").innerText = player.status;
 
-            if (player.capitane) {
-                card.querySelector(".captain-btn").classList.add("bg-purple-500");
-                card.querySelector(".captain-btn").classList.remove("hover:text-purple-500");
-                card.querySelector(".captain-badge ").classList.remove("hidden")
-            }
-            statistique(players);
+        card.querySelector("#player-age").innerText = player.age;
+        card.querySelector(".player-status").innerText = player.status;
+
+        if (player.capitane) {
+            card.querySelector(".captain-btn").classList.add("bg-purple-500");
+            card.querySelector(".captain-btn").classList.remove("hover:text-purple-500");
+            card.querySelector(".captain-badge ").classList.remove("hidden")
         }
-        if (template.id == "composition") {
-            if (player.status == "En blesse") {
-                card.querySelector(".player-status").classList.remove("hidden")
-            }
-        }
+
+
 
         //check colors:
 
@@ -147,7 +101,7 @@ export function affichage(players, liste, template) {
         card.classList.remove("hidden")
         liste.appendChild(card);
 
-
+        statistique(players);
     });
 }
 

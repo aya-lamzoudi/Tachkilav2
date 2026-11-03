@@ -1,154 +1,127 @@
 
-import { players } from "./stockage.js";
-import { affichage, pitch } from "./joueurs.js";
-import { showError, showsuccess } from "./interface.js";
-
-const playerlist = document.querySelector("#playerlist");
-const template =document.querySelector(".composition-card-liste");
-
-
-//afficher players in the side:
-affichage(players,playerlist,template);
-
-// afficher nombre de jouer in the aside
-document.querySelector("#tachkila-nbr").innerText = players.length;
-
-//afficher players in the pitch
-pitch(players);
-
-const selects = playerlist.querySelectorAll(".player-position-select"); 
 
 
 
-playerlist.addEventListener("change",(e)=>{
+export function pitch(players) {
+    //reset all html to none:
 
-    //target the select
-   let select = e.target;   
-     
-        let value = select.value; //get the select value
-        let playerCard = select.closest(".player-card"); //get the player's div
-        let poste = playerCard.querySelector(".player-position").innerText; //get the player post
-        let num = playerCard.querySelector(".player-number").innerText; //get the player number
-        let checking = document.querySelectorAll(".terrain-position");
-        //check if the player is already in the picth:
+    document.querySelectorAll(".number").forEach(element => {
+        element.innerHTML = "";
+        element.classList.add("hidden");
+    });
 
-            let found = false;
-            for (let i = 0; i < checking.length; i++) {
-                let checkingnbr = checking[i].querySelector(".number").innerText;
-                // let checkingname = checking[i].querySelector(".player-name-position").innerText;
+    document.querySelectorAll(".player-name-position").forEach(element => {
+        element.innerHTML = "libre";
+    });
 
-                console.log(checkingnbr);
-                if (checkingnbr == num) {
-                    found = true;
-                    break;
-                }
+
+    // add the player to the pitch
+    players.forEach(player => {
+        console.log("test", player.status)
+
+        if (player.status == "En blesse") {
+            player.position = "bench"
+        }
+        console.log("test2", player.position)
+
+        if (player.position != "bench") {
+
+
+            let path = document.querySelector(`.${player.position}`);
+            if (path) {
+                path.querySelector(".player-name-position").innerText = player.nom
+                path.querySelector(".number").innerText = player.numero;
+                path.querySelector(".number").classList.remove("hidden");
+
+                console.log(player.position)
             }
-             let path = document.querySelector(`.${value}`);
-              if(!found && path.querySelector(".player-name-position").innerText == "libre"|| found && value=="bench"){
-                 for(let i=0;i<players.length;i++){
-                        console.log("array",players[i].numero)
-                        console.log(num)
-                        if(players[i].numero == num){
-                            players[i].position=value;
-                            console.log(players[i]);
-                            break;  
-                        }
-                    }
-                 
 
-                }
-               localStorage.setItem("players", JSON.stringify(players));
-                 pitch(players);
-                 affichage(players,playerlist,template);
-                 
-})
+        }
+    });
+    localStorage.setItem("players", JSON.stringify(players));
 
+}
 
+// afficher les jouer in page composition:
 
-// selects.forEach(select => {
-//     select.addEventListener("change", function () {
-//         console.log("hey select")
-//         let value = select.value; //get the select value
-//         let playerCard = select.closest(".player-card"); //get the player's div
-//         let poste = playerCard.querySelector(".player-position").innerText; //get the player post
-//         let num = playerCard.querySelector(".player-number").innerText; //get the player number
-//         console.log(num)
-//         console.log(poste)
-//         console.log(value)
-//         let exist = false;
-//         let checking = document.querySelectorAll(".terrain-position");
-//         let path = document.querySelector(`.${value}`);
+export function affichage(players, liste, template) {
 
-//         for (let j = 0; j < checking.length; j++) {
-           
-//             //checking if the position can be tooken by the player
-//             if (checking[j].value == value && poste == checking[j].poste) {
-//                 exist = true;
-//                 break;
-//             }
+    liste.innerHTML = ``;
 
-//         }
-//         console.log(exist);
+    players.forEach(player => {
+        const clone = template.content.cloneNode(true);
+        const card = clone.querySelector(".player-card");
 
-//         if (exist) {
-//             let found = false;
-//             for (let i = 0; i < checking.length; i++) {
-//                 let checkingnbr = checking[i].querySelector(".number").innerText;
-//                 // let checkingname = checking[i].querySelector(".player-name-position").innerText;
-
-//                 console.log(checkingnbr);
-//                 console.log("3aaat9ooniii")
-//                 if (checkingnbr == num) {
-//                     found = true;
-//                     break;
-//                 }
-//             }
-//             if (!found && path.querySelector(".player-name-position").innerText == "libre") {
-//                 players.forEach(player => {
-
-//                     if (player.numero == num) {
-//                         console.log(player)
-//                         player.position = value;
-//                         localStorage.setItem("players", JSON.stringify(players));
-//                         path.querySelector(".player-name-position").innerText = playerCard.querySelector(".player-name").innerText;
-//                         path.querySelector(".number").innerText = playerCard.querySelector(".player-number").innerText;
-//                         path.querySelector(".number").classList.remove("hidden");
-//                         showsuccess("the player is being placed in the pitch with seccess");
-//                         pitch(player)
-//                     }
-
-//                 });
-//             } else {
-
-//                 showError("this position is already exist");
-//             }
+        card.querySelector(".player-number").innerText = player.numero;
+        card.querySelector(".player-name").innerText = player.nom;
+        card.querySelector(".player-position").innerText = player.post;
+        if (player.status == "En blesse") {
+            card.querySelector(".player-status").classList.remove("hidden")
+        }
 
 
+        //check colors:
 
-//         } else {
-//             if (value == "bench") {
-//                 players.forEach(player => {
+        if (player.post == "Attaquant") {
+            card.classList.toggle("border-[#d75241]");
+            card.querySelector(".player-number").classList.toggle("border-[#d75241]");
+            card.querySelector(".player-position").classList.toggle("text-[#d75241]");
+            if (template.id == "composition") {
+                card.querySelector("select").innerHTML = `
+                   <option value="bench" selected >Sur le banc</option>
+                   <option value="BU1">BU - Buteur 1</option>
+                   <option value="BU2">BU - Buteur 2</option>
+                  `
+                card.querySelector("select").value = player.position;
+            }
 
-//                     if (player.numero == num) {
-//                         console.log(player)
-//                         console.log(player.position)
-//                         let path = document.querySelector(`.${player.position}`);
-//                         console.log(path)
-//                         player.position = value;
-//                         localStorage.setItem("players", JSON.stringify(players));
-//                         path.querySelector(".player-name-position").innerText = "libre"
-//                         path.querySelector(".number").innerText = ""
-//                         path.querySelector(".number").classList.add("hidden");
-//                     }
+        } else if (player.post == "Milieu") {
+            card.classList.toggle("border-[#20d244]");
+            card.querySelector(".player-number").classList.toggle("border-[#20d244]");
+            card.querySelector(".player-position").classList.toggle("text-[#20d244]");
+            if (template.id == "composition") {
+                card.querySelector("select").innerHTML = `
+                  <option value="bench" selected>Sur le banc</option>
+                  <option value="MG">MG - Milieu gauche</option>
+                  <option value="MC1">MC - Milieu central 1</option>
+                  <option value="MC2">MC - Milieu central 2</option>
+                  <option value="MD">MD - Milieu droit</option>
+                  `
+                card.querySelector("select").value = player.position;
+            }
 
-//                 });
-//             } else {
-//                 showError("this position can not be accepted")
-//             }
+        } else if (player.post == "Defenseur") {
+            card.classList.toggle("border-[#3AC8EF]");
+            card.querySelector(".player-number").classList.toggle("border-[#3AC8EF]");
+            card.querySelector(".player-position").classList.toggle("text-[#3AC8EF]");
+            if (template.id == "composition") {
+                card.querySelector("select").innerHTML = `
+                  <option value="bench" selected >Sur le banc</option>
+                  <option value="DG">DG - Défenseur gauche</option>
+                  <option value="DC1">DC - Défenseur central 1</option>
+                  <option value="DC2">DC - Défenseur central 2</option>
+                  <option value="DD">DD - Défenseur droit</option>
+                  `
+                card.querySelector("select").value = player.position;
+            }
+        } else if (player.post == "Gardien") {
+            card.classList.toggle("border-orange-400");
+            card.querySelector(".player-number").classList.toggle("border-orange-400");
+            card.querySelector(".player-position").classList.toggle("text-orange-400");
+            if (template.id == "composition") {
+                card.querySelector("select").innerHTML = `
+                    <option value="bench" selected>Sur le banc</option>
+                  <option value="GB">GB - Gardien</option>
+                  `
+                card.querySelector("select").value = player.position;
+            }
+        }
 
-//         }
-
-//     })
 
 
-// })
+        card.classList.remove("hidden")
+        liste.appendChild(card);
+
+
+    });
+}
