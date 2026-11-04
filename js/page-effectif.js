@@ -1,19 +1,19 @@
 
 
-import { validatename, validatepost, validatenbr, validateage, validatestatus, validateeditnbr } from "./validation.js";
+import { validatename, validatepost, validatenbr, validateage, validatestatus, validateeditnbr, validateeditpost } from "./validation.js";
 import { togglepopup, updatepopup, showsuccess } from "./interface.js";
 import { players, chnageId } from "./stockage.js";
-import { affichage, statistique } from "./joueurs.js";
+import { affichage } from "./joueurs.js";
 
 
-export let parPage = 8;
-export let page = 1;
 
+export let action = { poste: "Toutes", page: 1, recherch: "" };
 //declaration
 const addplayerbtn = document.querySelector("#add-player");
 const form = document.querySelector("#addplayer");
 const editform = document.querySelector("#updateplayer");
 let oldnumber; //to dtock the old tenue number
+let poste;  //to stock the old poste 
 const playerliste = document.querySelector("#player-list-effective");
 const popup = document.querySelector("#popup");
 const popupupdate = document.querySelector("#update");
@@ -63,6 +63,7 @@ playerliste.addEventListener("click", function (event) {
                 oldnumber = player.numero;
                 editform.querySelector(".player-position").value = player.post;
                 editform.querySelector(".player-status").value = player.status;
+                poste = player.post;
             }
         });
 
@@ -89,7 +90,7 @@ playerliste.addEventListener("click", function (event) {
                 localStorage.setItem("players", JSON.stringify(players));
 
                 affichage(players, playerliste, template)
-                confirm.classList.toggle("hidden");
+                confirm.classList.add("hidden");
                 showsuccess("the player is the player is successfully removed");
             })
 
@@ -149,8 +150,8 @@ form.addEventListener("submit", function (event) {
             position: "bench",
             capitane: false
         }
-
         console.log(player)
+
         players.push(player);
         localStorage.setItem("players", JSON.stringify(players));
 
@@ -162,7 +163,8 @@ form.addEventListener("submit", function (event) {
         form.querySelector("#name").value = "";
         form.querySelector("#nbr").value = "";
         form.querySelector(".player-status").value = "";
-        form.querySelector(".player-position").value = ""
+        form.querySelector(".player-position").value = "";
+        form.querySelector("#age").value = ""
 
     }
 
@@ -178,7 +180,7 @@ editform.addEventListener("submit", function (event) {
 
     validateeditnbr(editform, oldnumber);
     validateage(editform);
-    validatepost(editform);
+    validateeditpost(editform, poste);
     validatestatus(editform);
 
     // check errors
@@ -202,10 +204,13 @@ editform.addEventListener("submit", function (event) {
             if (oldnumber == player.numero) {
 
                 player.nom = editform.querySelector("#name").value;
-                player.post = editform.querySelector(".player-position").value;
+
                 player.numero = editform.querySelector("#nbr").value;
-                player.position = editform.querySelector(".player-position").value
+                player.post = editform.querySelector(".player-position").value
                 player.status = editform.querySelector(".player-status").value;
+                if (player.status == "En blesse") {
+                    player.position = "bench";
+                }
                 localStorage.setItem("players", JSON.stringify(players));
                 affichage(players, playerliste, template);
                 updatepopup();
@@ -216,30 +221,114 @@ editform.addEventListener("submit", function (event) {
 
 });
 
-
+console.log(players)
 //filter & recherche:
 const useraction = document.querySelector(".players-area")
+
+// useraction.addEventListener("click", (event) => {
+
+//     // recherche 
+//     if (event.target.id == "search-player") {
+//         let input = document.querySelector("#search-player")
+//         input.addEventListener("input", () => {
+//             let result = players.filter((player) => player.nom.includes(input.value))
+//             console.log(result)
+//             affichage(result, playerliste, template);
+//             if (input.value == "") {
+//                 affichage(players, playerliste, template);
+//             }
+//         }
+//         )
+//     }
+
+
+//     //filtre
+//     if (event.target.id == "tous") {
+//         console.log(event.target.id)
+//         affichage(players, playerliste, template)
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+//     } else if (event.target.id == "Gardien") {
+
+//         const result = players.filter((player) => player.post == "Gardien");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+
+//     } else if (event.target.id == "Defenseur") {
+
+//         const result = players.filter((player) => player.post == "Defenseur");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+
+//     } else if (event.target.id == "Milieu") {
+
+//         const result = players.filter((player) => player.post == "Milieu");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+
+
+//     } else if (event.target.id == "Attaquant") {
+
+//         const result = players.filter((player) => player.post == "Attaquant");
+//         affichage(result, playerliste, template);
+
+//         // add color of the backround:
+//         document.querySelectorAll(".position-filter").forEach(element => {
+//             element.classList.remove("bg-[#1eba5f]");
+//         });
+//         event.target.classList.add("bg-[#1eba5f]");
+//     }
+
+
+// })
+
+
+//  pagination:
+
 
 useraction.addEventListener("click", (event) => {
 
     // recherche 
     if (event.target.id == "search-player") {
-        let input = document.querySelector("#search-player")
+        let input = document.querySelector("#search-player");
+        // action.recherch= document.querySelector("#search-player").value;
+
         input.addEventListener("input", () => {
-            let result = players.filter((player) => player.nom.startsWith(input.value))
-            console.log(result)
-            affichage(result, playerliste, template);
-            if (input.value == "") {
-                affichage(players, playerliste, template);
-            }
+            action.recherch = input.value;
+            console.log(action.recherch)
+            affichage(players, playerliste, template);
+
         }
         )
+
     }
 
 
     //filtre
     if (event.target.id == "tous") {
-        console.log(event.target.id)
+        action.poste = "Toutes"
         affichage(players, playerliste, template)
 
         // add color of the backround:
@@ -248,11 +337,10 @@ useraction.addEventListener("click", (event) => {
         });
         event.target.classList.add("bg-[#1eba5f]");
 
-
     } else if (event.target.id == "Gardien") {
 
-        const result = players.filter((player) => player.post == "Gardien");
-        affichage(result, playerliste, template);
+        action.poste = "Gardien"
+        affichage(players, playerliste, template);
 
         // add color of the backround:
         document.querySelectorAll(".position-filter").forEach(element => {
@@ -263,8 +351,8 @@ useraction.addEventListener("click", (event) => {
 
     } else if (event.target.id == "Defenseur") {
 
-        const result = players.filter((player) => player.post == "Defenseur");
-        affichage(result, playerliste, template);
+        action.poste = "Defenseur"
+        affichage(players, playerliste, template);
 
         // add color of the backround:
         document.querySelectorAll(".position-filter").forEach(element => {
@@ -274,9 +362,8 @@ useraction.addEventListener("click", (event) => {
 
 
     } else if (event.target.id == "Milieu") {
-
-        const result = players.filter((player) => player.post == "Milieu");
-        affichage(result, playerliste, template);
+        action.poste = "Milieu"
+        affichage(players, playerliste, template);
 
         // add color of the backround:
         document.querySelectorAll(".position-filter").forEach(element => {
@@ -287,8 +374,8 @@ useraction.addEventListener("click", (event) => {
 
     } else if (event.target.id == "Attaquant") {
 
-        const result = players.filter((player) => player.post == "Attaquant");
-        affichage(result, playerliste, template);
+        action.poste = "Attaquant"
+        affichage(players, playerliste, template);
 
         // add color of the backround:
         document.querySelectorAll(".position-filter").forEach(element => {
@@ -301,14 +388,14 @@ useraction.addEventListener("click", (event) => {
 })
 
 
-//  pagination:
 
-     document.querySelector("#previous-page").addEventListener("click", () => {
-          page--;
-          affichage (players, playerliste, template);
+
+document.querySelector("#previous-page").addEventListener("click", () => {
+    action.page--;
+    affichage(players, playerliste, template);
 });
 
-     document.querySelector("#next-page").addEventListener("click", () => {
-          page++;
-          affichage (players, playerliste, template);
+document.querySelector("#next-page").addEventListener("click", () => {
+    action.page++;
+    affichage(players, playerliste, template);
 });

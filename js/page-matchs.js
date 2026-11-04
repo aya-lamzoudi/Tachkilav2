@@ -6,6 +6,7 @@ import { validateadversaire, validatedate, validatetime, validatevanue, validate
 import { affichage } from "./matchs.js";
 
 
+
 //declaration de variables:
 const popup = document.querySelector("#popup");
 const popupupdate = document.querySelector("#update");
@@ -16,7 +17,6 @@ const template = document.querySelector(".match-template");
 const scoreform = document.querySelector("#score");
 const scoreeditform = document.querySelector("#edit-score");
 let matchid;
-let editid;
 affichage(matches, matchliste, template)
 
 
@@ -46,7 +46,7 @@ form.addEventListener("submit", function (event) {
     validatedate(form);
     validatetime(form);
     validatevanue(form);
-    console.log(validatevanue(form));
+   
     validatelocation(form);
     // check errors
 
@@ -73,7 +73,7 @@ form.addEventListener("submit", function (event) {
 
         }
 
-        console.log(matche)
+
         matches.push(matche);
 
         localStorage.setItem("matches", JSON.stringify(matches));
@@ -118,13 +118,16 @@ editform.addEventListener("submit", function (event) {
 
     if (!haserror) {
         matches.forEach(matche => {
-            console.log(matchid)
+           
             if (matche.id == matchid) {
+                console.log(matche)
                 matche.adversaire = editform.querySelector("#adversaire").value
                 matche.date = editform.querySelector("#date").value
                 matche.location = editform.querySelector("#location").value
-                matche.time = editform.querySelector("#time").value
+                matche.time = editform.querySelector("#time").value;
+                matche.domicile=validatevanue(editform);
             }
+
         });
 
 
@@ -132,7 +135,7 @@ editform.addEventListener("submit", function (event) {
 
         localStorage.setItem("matches", JSON.stringify(matches));
 
-        affichage(matches, matchliste, template)
+        affichage(matches, matchliste, template);
         // affichage(matches, matcheliste, template);
         updatepopup();
         showsuccess("the match is updated with sucsses");
@@ -174,7 +177,7 @@ matchliste.addEventListener("click", (event) => {
     if (editBtn) {
         updatepopup();
         let card = editBtn.closest(".match-card");
-        console.log(card)
+       
         matchid = card.dataset.id;
         matches.forEach(matche => {
             if (matche.id == card.dataset.id) {
@@ -197,16 +200,13 @@ matchliste.addEventListener("click", (event) => {
         const confirm = document.querySelector("#confirm");
         confirm.classList.toggle("hidden");
         let card = deleteBtn.closest(".match-card");
-        console.log(card);
+       
 
         matchid = card.dataset.id;
         let index = matches.findIndex(match => match.id == matchid);
         if (index !== -1) {
             confirm.querySelector("#cancelDelete").addEventListener("click", () => {
-                console.log("first", confirm);
-                confirm.classList.add("hidden");  //cencel the delete
-                console.log("second", confirm);
-                console.log("test");
+                confirm.classList.add("hidden");  //cencel the delete             
 
             })
             confirm.querySelector("#confirmDelete").addEventListener("click", () => {
@@ -224,14 +224,12 @@ matchliste.addEventListener("click", (event) => {
     if (choosescore) {
         document.querySelector("#score").classList.remove("hidden");
         let card = choosescore.closest(".match-card");
-        console.log(card);
         matchid = card.dataset.id;
     }
     if (editscore) {
         document.querySelector("#score-edit-popup").classList.remove("hidden");
         let card = editscore.closest(".match-card");
         matchid = card.dataset.id;
-        console.log(card)
         matches.forEach(matche => {
             if (matche.id == card.dataset.id) {
                 scoreeditform.querySelector("#atlas-but").value = matche.butAtlas
@@ -289,12 +287,12 @@ const useraction = document.querySelector(".matches-result")
 useraction.addEventListener("click", (event) => {
 
     // recherche 
-    console.log(event.target.id)
+   
     if (event.target.id == "search-match") {
         let input = document.querySelector("#search-match")
         input.addEventListener("input", () => {
             let result = matches.filter((match) => match.adversaire.startsWith(input.value));
-            console.log(result)
+         
             affichage(result, matchliste, template);
             if (input.value == "") {
                 affichage(matches, matchliste, template);
@@ -306,7 +304,7 @@ useraction.addEventListener("click", (event) => {
 
     //filtre
     if (event.target.id == "all") {
-        console.log(event.target.id)
+      
         affichage(matches, matchliste, template);
 
         // add color of the backround:

@@ -22,13 +22,12 @@ export function pitch(players) {
         if (player.status == "En blesse") {
             player.position = "bench"
         }
-        console.log("test2", player.position)
 
         if (player.position != "bench") {
 
-
             let path = document.querySelector(`.${player.position}`);
             if (path) {
+
                 path.querySelector(".player-name-position").innerText = player.nom
                 path.querySelector(".number").innerText = player.numero;
                 path.querySelector(".number").classList.remove("hidden");
@@ -59,69 +58,58 @@ export function affichage(players, liste, template) {
             card.querySelector(".player-status").classList.remove("hidden")
         }
 
-
         //check colors:
 
+        //functionjddjd(bordeColer, tesColor) // TODO: USE FUNCTIONS
+
         if (player.post == "Attaquant") {
-            card.classList.toggle("border-[#d75241]");
-            card.querySelector(".player-number").classList.toggle("border-[#d75241]");
-            card.querySelector(".player-position").classList.toggle("text-[#d75241]");
-            if (template.id == "composition") {
-                card.querySelector("select").innerHTML = `
+            let html = `
                    <option value="bench" selected >Sur le banc</option>
                    <option value="BU1">BU - Buteur 1</option>
                    <option value="BU2">BU - Buteur 2</option>
                   `
-                card.querySelector("select").value = player.position;
-            }
+            card.querySelector("select").value = player.position;
+            console.log(player.position)
+            colors(card, "border-[#d75241]", "text-[#d75241]", html, player.position)
 
         } else if (player.post == "Milieu") {
-            card.classList.toggle("border-[#20d244]");
-            card.querySelector(".player-number").classList.toggle("border-[#20d244]");
-            card.querySelector(".player-position").classList.toggle("text-[#20d244]");
-            if (template.id == "composition") {
-                card.querySelector("select").innerHTML = `
+            let html = `
                   <option value="bench" selected>Sur le banc</option>
                   <option value="MG">MG - Milieu gauche</option>
                   <option value="MC1">MC - Milieu central 1</option>
                   <option value="MC2">MC - Milieu central 2</option>
                   <option value="MD">MD - Milieu droit</option>
                   `
-                card.querySelector("select").value = player.position;
-            }
+            card.querySelector("select").value = player.position;
+            colors(card, "border-[#20d244]", "text-[#20d244]", html, player.position)
 
         } else if (player.post == "Defenseur") {
-            card.classList.toggle("border-[#3AC8EF]");
-            card.querySelector(".player-number").classList.toggle("border-[#3AC8EF]");
-            card.querySelector(".player-position").classList.toggle("text-[#3AC8EF]");
-            if (template.id == "composition") {
-                card.querySelector("select").innerHTML = `
+            let html = `
                   <option value="bench" selected >Sur le banc</option>
                   <option value="DG">DG - Défenseur gauche</option>
                   <option value="DC1">DC - Défenseur central 1</option>
                   <option value="DC2">DC - Défenseur central 2</option>
                   <option value="DD">DD - Défenseur droit</option>
                   `
-                card.querySelector("select").value = player.position;
-            }
+            card.querySelector("select").value = player.position;
+            colors(card, "border-[#3AC8EF]", "text-[#3AC8EF]", html, player.position)
+
         } else if (player.post == "Gardien") {
-            card.classList.toggle("border-orange-400");
-            card.querySelector(".player-number").classList.toggle("border-orange-400");
-            card.querySelector(".player-position").classList.toggle("text-orange-400");
-            if (template.id == "composition") {
-                card.querySelector("select").innerHTML = `
+            let html = `
                     <option value="bench" selected>Sur le banc</option>
                   <option value="GB">GB - Gardien</option>
                   `
-                card.querySelector("select").value = player.position;
-            }
+            colors(card, "border-orange-400", "text-orange-400", html, player.position)
         }
-
-
-
         card.classList.remove("hidden")
         liste.appendChild(card);
-
-
     });
+}
+
+function colors(card, border, text, select, selectvalue) {
+    card.classList.toggle(border);
+    card.querySelector(".player-number").classList.toggle(border);
+    card.querySelector(".player-position").classList.toggle(text);
+    card.querySelector("select").innerHTML = `${select} `
+    card.querySelector("select").value = selectvalue;
 }

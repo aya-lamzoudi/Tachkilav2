@@ -57,6 +57,25 @@ export function validatepost(form) {
 
     }
 }
+
+export function validateeditpost(form, oldposte) {
+    const poste = form.querySelector(".player-position").value;
+    const error = form.querySelector("#flied-err");
+
+    if (poste === "") {
+        error.innerText = "Choisissez un poste";
+        return;
+    } else if (poste == "Gardien" && oldposte != "Gardien") {
+        if (players.filter(player => player.post == "Gardien").length == 2) error.innerText = "there is alreadey 2 gardien";
+    }
+
+    else {
+        error.innerText = "";
+
+    }
+}
+
+
 export function validatestatus(form) {
     const poste = form.querySelector(".player-status").value;
     const error = form.querySelector("#status-err");
@@ -144,8 +163,8 @@ export function validatelocation(form) {
 
 
 export function validatevanue(form) {
-    let input = document.querySelector("#venue").value;
-    let error = document.querySelector("#venue-err");
+    let input = form.querySelector("#venue").value;
+    let error = form.querySelector("#venue-err");
 
     if (input === "") {
         error.innerText = "Choisissez un poste";
