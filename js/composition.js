@@ -54,13 +54,8 @@ export function affichage(players, liste, template) {
         card.querySelector(".player-number").innerText = player.numero;
         card.querySelector(".player-name").innerText = player.nom;
         card.querySelector(".player-position").innerText = player.post;
-        if (player.status == "En blesse") {
-            card.querySelector(".player-status").classList.remove("hidden")
-        }
 
-        //check colors:
-
-        //functionjddjd(bordeColer, tesColor) // TODO: USE FUNCTIONS
+        //add colors:
 
         if (player.post == "Attaquant") {
             let html = `
@@ -101,6 +96,13 @@ export function affichage(players, liste, template) {
                   `
             colors(card, "border-orange-400", "text-orange-400", html, player.position)
         }
+        if (player.status == "En blesse") {
+            card.querySelector(".player-status").classList.remove("hidden");
+            card.querySelector("select").innerHTML = `
+                   <option value="bench" disabled selected>can't be on the bitch</option>
+                  `
+        }
+
         card.classList.remove("hidden")
         liste.appendChild(card);
     });

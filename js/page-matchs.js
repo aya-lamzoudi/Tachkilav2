@@ -2,7 +2,7 @@
 //add event lisners to page match
 import { matches, chnagematchId } from "./stockage.js";
 import { togglepopup, updatepopup, showsuccess } from "./interface.js";
-import { validateadversaire, validatedate, validatetime, validatevanue, validatelocation } from "./validation.js";
+import { validateadversaire, validatedate, validatetime, validatevanue, validatelocation ,validateiditdate} from "./validation.js";
 import { affichage } from "./matchs.js";
 
 
@@ -17,6 +17,7 @@ const template = document.querySelector(".match-template");
 const scoreform = document.querySelector("#score");
 const scoreeditform = document.querySelector("#edit-score");
 let matchid;
+let olddate,buts;
 affichage(matches, matchliste, template)
 
 
@@ -100,7 +101,8 @@ editform.addEventListener("submit", function (event) {
     event.preventDefault();
 
     validateadversaire(editform);
-    validatedate(editform);
+    // validatedate(editform);
+    validateiditdate(editform, olddate,buts) 
     validatetime(editform);
     validatevanue(editform);
 
@@ -185,6 +187,9 @@ matchliste.addEventListener("click", (event) => {
                 editform.querySelector("#date").value = matche.date;
                 editform.querySelector("#location").value = matche.location;
                 editform.querySelector("#time").value = matche.time;
+                buts=matche.butAtlas;
+                // console.log(matche.date.getTime)
+                olddate= new Date(matche.date).getTime()
                 if (matche.domicile) {
                     editform.querySelector("select").value = "Domicile"
                 } else {

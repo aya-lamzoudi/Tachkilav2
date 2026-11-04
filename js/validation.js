@@ -133,6 +133,23 @@ export function validatedate(form) {
 
 
 }
+export function validateiditdate(form, olddate,butAtlas) {
+
+    let input = form.querySelector("#date").value.trim();
+    let error = form.querySelector("#date-err");
+
+    if (input === "") {
+        error.innerText = "please choose the date of the match";
+    } else if (new Date().getTime() > olddate && butAtlas != null) {
+        // console.log()
+        error.innerText = "you can't choose the date";
+    }
+    else {
+        error.innerText = "";
+    }
+
+
+}
 
 export function validatetime(form) {
     let input = document.querySelector("#time").value.trim();

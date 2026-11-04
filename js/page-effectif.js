@@ -4,9 +4,6 @@ import { validatename, validatepost, validatenbr, validateage, validatestatus, v
 import { togglepopup, updatepopup, showsuccess } from "./interface.js";
 import { players, chnageId } from "./stockage.js";
 import { affichage } from "./joueurs.js";
-
-
-
 export let action = { poste: "Toutes", page: 1, recherch: "" };
 //declaration
 const addplayerbtn = document.querySelector("#add-player");
@@ -399,3 +396,6 @@ document.querySelector("#next-page").addEventListener("click", () => {
     action.page++;
     affichage(players, playerliste, template);
 });
+
+
+// let test = document.querySelectorAll(".composition-card-liste")
