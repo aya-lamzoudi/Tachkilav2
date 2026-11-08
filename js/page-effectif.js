@@ -74,13 +74,13 @@ playerliste.addEventListener("click", function (event) {
         let number = playerCard.querySelector(".player-number").innerText;
         let index = players.findIndex(player => player.numero == number);
         if (index !== -1) {
+
             confirm.querySelector("#cancelDelete").addEventListener("click", () => {
-                console.log("first", confirm);
                 confirm.classList.add("hidden");  //cencel the delete
-                console.log("second", confirm);
                 console.log("test");
 
             })
+
             confirm.querySelector("#confirmDelete").addEventListener("click", () => {
 
                 players.splice(index, 1);
@@ -97,6 +97,7 @@ playerliste.addEventListener("click", function (event) {
 
     if (captanebtn) {
         let tenue = captanebtn.closest(".player-card").querySelector(".player-number").innerText;
+
         players.forEach(player => {
             if (player.numero == tenue) {
                 player.capitane = true;
@@ -106,8 +107,6 @@ playerliste.addEventListener("click", function (event) {
         });
         localStorage.setItem("players", JSON.stringify(players));
         affichage(players, playerliste, template)
-
-
 
     }
 });
@@ -205,9 +204,10 @@ editform.addEventListener("submit", function (event) {
                 player.numero = editform.querySelector("#nbr").value;
                 player.post = editform.querySelector(".player-position").value
                 player.status = editform.querySelector(".player-status").value;
-                if (player.status == "En blesse") {
+                if (player.status == "En blesse" || player.post != poste) {
                     player.position = "bench";
                 }
+
                 localStorage.setItem("players", JSON.stringify(players));
                 affichage(players, playerliste, template);
                 updatepopup();
@@ -219,91 +219,10 @@ editform.addEventListener("submit", function (event) {
 });
 
 console.log(players)
+
+
 //filter & recherche:
 const useraction = document.querySelector(".players-area")
-
-// useraction.addEventListener("click", (event) => {
-
-//     // recherche 
-//     if (event.target.id == "search-player") {
-//         let input = document.querySelector("#search-player")
-//         input.addEventListener("input", () => {
-//             let result = players.filter((player) => player.nom.includes(input.value))
-//             console.log(result)
-//             affichage(result, playerliste, template);
-//             if (input.value == "") {
-//                 affichage(players, playerliste, template);
-//             }
-//         }
-//         )
-//     }
-
-
-//     //filtre
-//     if (event.target.id == "tous") {
-//         console.log(event.target.id)
-//         affichage(players, playerliste, template)
-
-//         // add color of the backround:
-//         document.querySelectorAll(".position-filter").forEach(element => {
-//             element.classList.remove("bg-[#1eba5f]");
-//         });
-//         event.target.classList.add("bg-[#1eba5f]");
-
-//     } else if (event.target.id == "Gardien") {
-
-//         const result = players.filter((player) => player.post == "Gardien");
-//         affichage(result, playerliste, template);
-
-//         // add color of the backround:
-//         document.querySelectorAll(".position-filter").forEach(element => {
-//             element.classList.remove("bg-[#1eba5f]");
-//         });
-//         event.target.classList.add("bg-[#1eba5f]");
-
-
-//     } else if (event.target.id == "Defenseur") {
-
-//         const result = players.filter((player) => player.post == "Defenseur");
-//         affichage(result, playerliste, template);
-
-//         // add color of the backround:
-//         document.querySelectorAll(".position-filter").forEach(element => {
-//             element.classList.remove("bg-[#1eba5f]");
-//         });
-//         event.target.classList.add("bg-[#1eba5f]");
-
-
-//     } else if (event.target.id == "Milieu") {
-
-//         const result = players.filter((player) => player.post == "Milieu");
-//         affichage(result, playerliste, template);
-
-//         // add color of the backround:
-//         document.querySelectorAll(".position-filter").forEach(element => {
-//             element.classList.remove("bg-[#1eba5f]");
-//         });
-//         event.target.classList.add("bg-[#1eba5f]");
-
-
-//     } else if (event.target.id == "Attaquant") {
-
-//         const result = players.filter((player) => player.post == "Attaquant");
-//         affichage(result, playerliste, template);
-
-//         // add color of the backround:
-//         document.querySelectorAll(".position-filter").forEach(element => {
-//             element.classList.remove("bg-[#1eba5f]");
-//         });
-//         event.target.classList.add("bg-[#1eba5f]");
-//     }
-
-
-// })
-
-
-//  pagination:
-
 
 useraction.addEventListener("click", (event) => {
 
@@ -385,7 +304,7 @@ useraction.addEventListener("click", (event) => {
 })
 
 
-
+//events for pagination:
 
 document.querySelector("#previous-page").addEventListener("click", () => {
     action.page--;
@@ -398,4 +317,3 @@ document.querySelector("#next-page").addEventListener("click", () => {
 });
 
 
-// let test = document.querySelectorAll(".composition-card-liste")

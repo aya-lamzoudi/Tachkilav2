@@ -1,11 +1,39 @@
 //match functions
 
+import { recherch, btnfilter } from "./page-matchs.js";
+
+
+
+export function filtre(matches, btnfilter, recherch) {
+  const now = new Date();
+
+  return matches.filter((matche) => {
+    const dateMatch = new Date(`${matche.date}`);
+
+    const AVenir = dateMatch > now;
+
+    const Joue = dateMatch <= now;
+
+    const parFilter =
+      btnfilter === "all" ||
+      (btnfilter === "upcoming" && AVenir) ||
+      (btnfilter === "played" && Joue);
+
+    const parRecherche = matche.adversaire.toLowerCase().includes(recherch.toLowerCase());
+
+    return parFilter && parRecherche;
+  });
+}
+
 
 
 export function affichage(matches, liste, template) {
 
   liste.innerHTML = ``;
 
+  matches = filtre(matches, btnfilter, recherch)
+
+  console.log(matches)
   matches.forEach(matche => {
     const clone = template.content.cloneNode(true);
     const card = clone.querySelector(".match-card");
@@ -44,8 +72,8 @@ export function affichage(matches, liste, template) {
       card.querySelector(".score-btn").classList.remove("hidden");
     }
     if (nowdate < matchdate) {
-      matche.butAtlas=null;
-      matche.butadversaire=null;
+      matche.butAtlas = null;
+      matche.butadversaire = null;
       card.querySelector(".match-result").classList.add("hidden");
       card.querySelector(".match-score").innerText = ``;
       card.querySelector(".matche-status").innerText = "";
@@ -60,7 +88,6 @@ export function affichage(matches, liste, template) {
         card.querySelector(".match-score").classList.add("text-[#20D244]");
         card.querySelector(".matche-status").classList.add("text-[#20D244]");
         card.querySelector(".matche-status").innerText = "Victoire";
-
 
 
       } else if (matche.butAtlas < matche.butadversaire) {
@@ -92,7 +119,7 @@ export function statistique(matches) {
   let cards = document.querySelector(".match-statistique");
 
   cards.querySelector(".victoire-nbr").innerText = matches.filter(matche => matche.butAtlas > matche.butadversaire).length;
-  cards.querySelector(".nul-nbr").innerText = matches.filter(matche => matche.butAtlas == matche.butadversaire).length
+  cards.querySelector(".nul-nbr").innerText = matches.filter(matche => matche.butAtlas === matche.butadversaire && matche.butAtlas != null).length
   cards.querySelector(".defaite-nbr").innerText = matches.filter(matche => matche.butAtlas < matche.butadversaire).length
 
 

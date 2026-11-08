@@ -133,19 +133,15 @@ export function validatedate(form) {
 
 
 }
-export function validateiditdate(form, olddate,butAtlas) {
+export function validateiditdate(form, butAtlas) {
 
-    let input = form.querySelector("#date").value.trim();
-    let error = form.querySelector("#date-err");
-
-    if (input === "") {
-        error.innerText = "please choose the date of the match";
-    } else if (new Date().getTime() > olddate && butAtlas != null) {
-        // console.log()
-        error.innerText = "you can't choose the date";
-    }
-    else {
-        error.innerText = "";
+    let input = form.querySelector("#date")
+    if (butAtlas != null) {
+        input.disabled = true;
+        form.querySelector("#time").disabled = true;
+    } else {
+        input.disabled = false;
+        form.querySelector("#time").disabled = false;
     }
 
 

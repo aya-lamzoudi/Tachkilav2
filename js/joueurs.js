@@ -1,123 +1,27 @@
 //jouer functions
 
-// import { parPage } from "./page-effectif.js"
-import {action} from "./page-effectif.js"
+
+import { action } from "./page-effectif.js"
+
+
 //aficher player in the pitch
-let  parPage=8
+let parPage = 8
 
-// afficher les jouer in page effective:
-// export function affichage(players, liste, template) {
-//     console.log(null + 0)
-//     liste.innerHTML = ``;
-//     const debut = (page - 1) * parPage;
-//     let playersAffiche = players.slice(debut, debut + parPage);
-
-//     let totalPages = Math.ceil(players.length / parPage)
-
-//     document.querySelector("#page-count").innerText = `${page} / ${totalPages}`
-//     document.querySelector("#players-count").innerText = ` Affichage de ${debut + parPage} sur ${players.length} joueurs `
-//     document.querySelector("#previous-page").disabled = page <= 1;
-//     document.querySelector("#next-page").disabled = page >= totalPages;
-
-
-//     playersAffiche.forEach(player => {
-//         const clone = template.content.cloneNode(true);
-//         const card = clone.querySelector(".player-card");
-
-//         card.querySelector(".player-number").innerText = player.numero;
-//         card.querySelector(".player-name").innerText = player.nom;
-//         card.querySelector(".player-position").innerText = player.post;
-
-//         card.querySelector("#player-age").innerText = player.age;
-//         card.querySelector(".player-status").innerText = player.status;
-
-//         if (player.capitane) {
-//             card.querySelector(".captain-btn").classList.add("bg-purple-500");
-//             card.querySelector(".captain-btn").classList.remove("hover:text-purple-500");
-//             card.querySelector(".captain-badge ").classList.remove("hidden")
-//         }
-
-
-
-//         //check colors:
-
-//         if (player.post == "Attaquant") {
-//             card.classList.toggle("border-[#d75241]");
-//             card.querySelector(".player-number").classList.toggle("border-[#d75241]");
-//             card.querySelector(".player-position").classList.toggle("text-[#d75241]");
-//             if (template.id == "composition") {
-//                 card.querySelector("select").innerHTML = `
-//                    <option value="bench" selected >Sur le banc</option>
-//                    <option value="BU1">BU - Buteur 1</option>
-//                    <option value="BU2">BU - Buteur 2</option>
-//                   `
-//                 card.querySelector("select").value = player.position;
-//             }
-
-//         } else if (player.post == "Milieu") {
-//             card.classList.toggle("border-[#20d244]");
-//             card.querySelector(".player-number").classList.toggle("border-[#20d244]");
-//             card.querySelector(".player-position").classList.toggle("text-[#20d244]");
-//             if (template.id == "composition") {
-//                 card.querySelector("select").innerHTML = `
-//                   <option value="bench" selected>Sur le banc</option>
-//                   <option value="MG">MG - Milieu gauche</option>
-//                   <option value="MC1">MC - Milieu central 1</option>
-//                   <option value="MC2">MC - Milieu central 2</option>
-//                   <option value="MD">MD - Milieu droit</option>
-//                   `
-//                 card.querySelector("select").value = player.position;
-//             }
-
-//         } else if (player.post == "Defenseur") {
-//             card.classList.toggle("border-[#3AC8EF]");
-//             card.querySelector(".player-number").classList.toggle("border-[#3AC8EF]");
-//             card.querySelector(".player-position").classList.toggle("text-[#3AC8EF]");
-//             if (template.id == "composition") {
-//                 card.querySelector("select").innerHTML = `
-//                   <option value="bench" selected >Sur le banc</option>
-//                   <option value="DG">DG - Défenseur gauche</option>
-//                   <option value="DC1">DC - Défenseur central 1</option>
-//                   <option value="DC2">DC - Défenseur central 2</option>
-//                   <option value="DD">DD - Défenseur droit</option>
-//                   `
-//                 card.querySelector("select").value = player.position;
-//             }
-//         } else if (player.post == "Gardien") {
-//             card.classList.toggle("border-orange-400");
-//             card.querySelector(".player-number").classList.toggle("border-orange-400");
-//             card.querySelector(".player-position").classList.toggle("text-orange-400");
-//             if (template.id == "composition") {
-//                 card.querySelector("select").innerHTML = `
-//                     <option value="bench" selected>Sur le banc</option>
-//                   <option value="GB">GB - Gardien</option>
-//                   `
-//                 card.querySelector("select").value = player.position;
-//             }
-//         }
-
-
-
-//         card.classList.remove("hidden")
-//         liste.appendChild(card);
-
-//         statistique(players);
-//     });
-// }
 
 function filtre(players) {
-  return players.filter(
-    (p) =>
-      p.nom.toLowerCase().includes(action.recherch.toLowerCase()) &&
-      (action.poste === "Toutes" || p.post === action.poste),
-  );
+    return players.filter(
+        (p) =>
+            p.nom.toLowerCase().includes(action.recherch.toLowerCase()) &&
+            (action.poste === "Toutes" || p.post === action.poste),
+    );
 }
-// teste
+
+// afficher les jouer in page effective:
 export function affichage(players, liste, template) {
-    
+
     liste.innerHTML = ``;
     const debut = (action.page - 1) * parPage;
-     players=filtre(players);
+    players = filtre(players);
     let playersAffiche = players.slice(debut, debut + parPage);
 
     let totalPages = Math.ceil(players.length / parPage)
@@ -150,9 +54,8 @@ export function affichage(players, liste, template) {
         //check colors:
 
         if (player.post == "Attaquant") {
-            card.classList.toggle("border-[#d75241]");
-            card.querySelector(".player-number").classList.toggle("border-[#d75241]");
-            card.querySelector(".player-position").classList.toggle("text-[#d75241]");
+            color(card,"border-[#d75241]","text-[#d75241]")
+            
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
                    <option value="bench" selected >Sur le banc</option>
@@ -163,9 +66,8 @@ export function affichage(players, liste, template) {
             }
 
         } else if (player.post == "Milieu") {
-            card.classList.toggle("border-[#20d244]");
-            card.querySelector(".player-number").classList.toggle("border-[#20d244]");
-            card.querySelector(".player-position").classList.toggle("text-[#20d244]");
+            color(card,"border-[#20d244]","text-[#20d244]")
+           
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
                   <option value="bench" selected>Sur le banc</option>
@@ -178,9 +80,9 @@ export function affichage(players, liste, template) {
             }
 
         } else if (player.post == "Defenseur") {
-            card.classList.toggle("border-[#3AC8EF]");
-            card.querySelector(".player-number").classList.toggle("border-[#3AC8EF]");
-            card.querySelector(".player-position").classList.toggle("text-[#3AC8EF]");
+
+            color(card,"border-[#3AC8EF]","text-[#3AC8EF]")
+
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
                   <option value="bench" selected >Sur le banc</option>
@@ -192,9 +94,9 @@ export function affichage(players, liste, template) {
                 card.querySelector("select").value = player.position;
             }
         } else if (player.post == "Gardien") {
-            card.classList.toggle("border-orange-400");
-            card.querySelector(".player-number").classList.toggle("border-orange-400");
-            card.querySelector(".player-position").classList.toggle("text-orange-400");
+          
+            color(card,"border-orange-400","text-orange-400")
+            
             if (template.id == "composition") {
                 card.querySelector("select").innerHTML = `
                     <option value="bench" selected>Sur le banc</option>
@@ -205,7 +107,6 @@ export function affichage(players, liste, template) {
         }
 
 
-
         card.classList.remove("hidden")
         liste.appendChild(card);
 
@@ -213,6 +114,11 @@ export function affichage(players, liste, template) {
     });
 }
 
+function color(card,border,text) {
+    card.classList.add(border);
+    card.querySelector(".player-number").classList.add(border);
+    card.querySelector(".player-position").classList.add(text);
+}
 
 
 //statistique
@@ -221,16 +127,9 @@ export function statistique(players) {
 
     let cards = document.querySelector(".statistique");
     cards.querySelector(".totale-nbr").innerText = players.length;
-    //  let f=0;
-    //  let b=0;
-    // players.forEach(player=>{
-    //     if(player.status=="En blesse") {
-    //      b++;
-    //     }else{
-    //         f=f+1
-    //     }
-    // })
+
     cards.querySelector(".form-nbr").innerText = players.filter(player => player.status == "En form").length;
     cards.querySelector(".blesse-nbr").innerText = players.filter(player => player.status === "En blesse").length;
     cards.querySelector(".age-moyen").innerText = (players.reduce((acc, player) => acc + Number(player.age), 0) / players.length).toFixed(2) + " ans"
 }
+

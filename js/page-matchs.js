@@ -2,7 +2,7 @@
 //add event lisners to page match
 import { matches, chnagematchId } from "./stockage.js";
 import { togglepopup, updatepopup, showsuccess } from "./interface.js";
-import { validateadversaire, validatedate, validatetime, validatevanue, validatelocation ,validateiditdate} from "./validation.js";
+import { validateadversaire, validatedate, validatetime, validatevanue, validatelocation, validateiditdate } from "./validation.js";
 import { affichage } from "./matchs.js";
 
 
@@ -16,13 +16,18 @@ const matchliste = document.querySelector("#matches-list");
 const template = document.querySelector(".match-template");
 const scoreform = document.querySelector("#score");
 const scoreeditform = document.querySelector("#edit-score");
-let matchid;
-let olddate,buts;
+let matchid, buts;
+export let recherch = "", btnfilter = "all";
+
+
+//call the function to afficher les matches:
 affichage(matches, matchliste, template)
 
 
 // event lisner for button d'ajouter
 document.querySelector("#add-match").addEventListener("click", togglepopup);
+
+
 
 // add event lisner to the popup so we can close & annuler:
 popup.addEventListener("click", function (event) {
@@ -39,6 +44,112 @@ popupupdate.addEventListener("click", function (event) {
     }
 })
 
+
+
+//add event lisner sur score form to cancel and close saisir form:
+
+scoreform.addEventListener("click", (event) => {
+    if (event.target.id == "close-btn" || event.target.id == "popup-cancel") {
+        document.querySelector("#score").classList.add("hidden");
+    }
+})
+
+//add event lisner sur edit-scor form to cancel and close edit saisir form:
+
+document.querySelector("#score-edit-popup").addEventListener("click", (event) => {
+    if (event.target.id == "close-btn" || event.target.id == "popup-cancel") {
+        document.querySelector("#score-edit-popup").classList.add("hidden");
+    }
+})
+
+
+
+
+// add event lisner sur tout les card de match:(cantainer of them)
+
+matchliste.addEventListener("click", (event) => {
+
+    const editBtn = event.target.closest(".edit-match-btn");
+    const deleteBtn = event.target.closest(".delete-match-btn");
+    const choosescore = event.target.closest(".score-btn");
+    const editscore = event.target.closest(".edit-score-btn");
+
+
+    if (editBtn) {
+        updatepopup();
+        let card = editBtn.closest(".match-card");
+
+        matchid = card.dataset.id;
+        matches.forEach(matche => {
+            if (matche.id == card.dataset.id) {
+                editform.querySelector("#adversaire").value = matche.adversaire
+                editform.querySelector("#date").value = matche.date;
+                editform.querySelector("#location").value = matche.location;
+                editform.querySelector("#time").value = matche.time;
+                buts = matche.butAtlas;
+                // console.log(matche.date.getTime)
+
+                if (matche.domicile) {
+                    editform.querySelector("select").value = "Domicile"
+                } else {
+                    editform.querySelector("select").value = "exterieur"
+                }
+                validateiditdate(editform, buts)
+            }
+        })
+
+    }
+
+    if (deleteBtn) {
+
+        const confirm = document.querySelector("#confirm");
+        confirm.classList.toggle("hidden");
+        let card = deleteBtn.closest(".match-card");
+
+
+        matchid = card.dataset.id;
+        let index = matches.findIndex(match => match.id == matchid);
+        if (index !== -1) {
+            confirm.querySelector("#cancelDelete").addEventListener("click", () => {
+                confirm.classList.add("hidden");  //cencel the delete             
+
+            })
+            confirm.querySelector("#confirmDelete").addEventListener("click", () => {
+
+                matches.splice(index, 1);
+                localStorage.setItem("matches", JSON.stringify(matches));
+
+                affichage(matches, matchliste, template)
+                confirm.classList.toggle("hidden");
+                showsuccess("this match is successfully removed");
+            })
+
+        }
+    }
+    if (choosescore) {
+        document.querySelector("#score").classList.remove("hidden");
+        let card = choosescore.closest(".match-card");
+        matchid = card.dataset.id;
+    }
+    if (editscore) {
+        document.querySelector("#score-edit-popup").classList.remove("hidden");
+        let card = editscore.closest(".match-card");
+        matchid = card.dataset.id;
+        matches.forEach(matche => {
+            if (matche.id == card.dataset.id) {
+                scoreeditform.querySelector("#atlas-but").value = matche.butAtlas
+                scoreeditform.querySelector("#adversaire-but").value = matche.butadversaire;
+
+            }
+        })
+    }
+
+})
+
+
+
+
+
 //add match form:
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -47,7 +158,7 @@ form.addEventListener("submit", function (event) {
     validatedate(form);
     validatetime(form);
     validatevanue(form);
-   
+
     validatelocation(form);
     // check errors
 
@@ -95,17 +206,15 @@ form.addEventListener("submit", function (event) {
 })
 
 
-
 //edit match form:
 editform.addEventListener("submit", function (event) {
     event.preventDefault();
 
     validateadversaire(editform);
-    // validatedate(editform);
-    validateiditdate(editform, olddate,buts) 
+    validatedate(editform);
+
     validatetime(editform);
     validatevanue(editform);
-
     validatelocation(editform);
     // check errors
 
@@ -120,14 +229,14 @@ editform.addEventListener("submit", function (event) {
 
     if (!haserror) {
         matches.forEach(matche => {
-           
+
             if (matche.id == matchid) {
                 console.log(matche)
                 matche.adversaire = editform.querySelector("#adversaire").value
                 matche.date = editform.querySelector("#date").value
                 matche.location = editform.querySelector("#location").value
                 matche.time = editform.querySelector("#time").value;
-                matche.domicile=validatevanue(editform);
+                matche.domicile = validatevanue(editform);
             }
 
         });
@@ -149,105 +258,9 @@ editform.addEventListener("submit", function (event) {
 })
 
 
-//add event lisner sur scor form do annuler and delect saisir:
-
-scoreform.addEventListener("click", (event) => {
-    if (event.target.id == "close-btn" || event.target.id == "popup-cancel") {
-        document.querySelector("#score").classList.add("hidden");
-    }
-})
-
-//add event lisner sur edit-scor form do annuler and delect saisir:
-
-document.querySelector("#score-edit-popup").addEventListener("click", (event) => {
-    if (event.target.id == "close-btn" || event.target.id == "popup-cancel") {
-        document.querySelector("#score-edit-popup").classList.add("hidden");
-    }
-})
 
 
-// add event lisner sur tout les card de match:(cantainer of them)
-
-matchliste.addEventListener("click", (event) => {
-
-    const editBtn = event.target.closest(".edit-match-btn");
-    const deleteBtn = event.target.closest(".delete-match-btn");
-    const choosescore = event.target.closest(".score-btn");
-    const editscore = event.target.closest(".edit-score-btn");
-
-
-    if (editBtn) {
-        updatepopup();
-        let card = editBtn.closest(".match-card");
-       
-        matchid = card.dataset.id;
-        matches.forEach(matche => {
-            if (matche.id == card.dataset.id) {
-                editform.querySelector("#adversaire").value = matche.adversaire
-                editform.querySelector("#date").value = matche.date;
-                editform.querySelector("#location").value = matche.location;
-                editform.querySelector("#time").value = matche.time;
-                buts=matche.butAtlas;
-                // console.log(matche.date.getTime)
-                olddate= new Date(matche.date).getTime()
-                if (matche.domicile) {
-                    editform.querySelector("select").value = "Domicile"
-                } else {
-                    editform.querySelector("select").value = "exterieur"
-                }
-
-            }
-        })
-    }
-
-    if (deleteBtn) {
-
-        const confirm = document.querySelector("#confirm");
-        confirm.classList.toggle("hidden");
-        let card = deleteBtn.closest(".match-card");
-       
-
-        matchid = card.dataset.id;
-        let index = matches.findIndex(match => match.id == matchid);
-        if (index !== -1) {
-            confirm.querySelector("#cancelDelete").addEventListener("click", () => {
-                confirm.classList.add("hidden");  //cencel the delete             
-
-            })
-            confirm.querySelector("#confirmDelete").addEventListener("click", () => {
-
-                matches.splice(index, 1);
-                localStorage.setItem("matches", JSON.stringify(matches));
-
-                affichage(matches, matchliste, template)
-                confirm.classList.toggle("hidden");
-                showsuccess("this match is successfully removed");
-            })
-
-        }
-    }
-    if (choosescore) {
-        document.querySelector("#score").classList.remove("hidden");
-        let card = choosescore.closest(".match-card");
-        matchid = card.dataset.id;
-    }
-    if (editscore) {
-        document.querySelector("#score-edit-popup").classList.remove("hidden");
-        let card = editscore.closest(".match-card");
-        matchid = card.dataset.id;
-        matches.forEach(matche => {
-            if (matche.id == card.dataset.id) {
-                scoreeditform.querySelector("#atlas-but").value = matche.butAtlas
-                scoreeditform.querySelector("#adversaire-but").value = matche.butadversaire;
-
-            }
-        })
-    }
-
-})
-
-
-//event lisner sur popup scote:
+//saisir le score :
 
 scoreform.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -264,7 +277,7 @@ scoreform.addEventListener("submit", (e) => {
 
 })
 
-//event lisner sur popup edit score
+// edit score :
 scoreeditform.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -282,26 +295,21 @@ scoreeditform.addEventListener("submit", (e) => {
 
 
 
-console.log(matches);
-
-
 //filtrage && recherch:
 
 const useraction = document.querySelector(".matches-result")
 
+
 useraction.addEventListener("click", (event) => {
 
     // recherche 
-   
+
     if (event.target.id == "search-match") {
         let input = document.querySelector("#search-match")
         input.addEventListener("input", () => {
-            let result = matches.filter((match) => match.adversaire.startsWith(input.value));
-         
-            affichage(result, matchliste, template);
-            if (input.value == "") {
-                affichage(matches, matchliste, template);
-            }
+            recherch = input.value;
+            console.log(recherch)
+            affichage(matches, matchliste, template);
         }
         )
     }
@@ -309,7 +317,8 @@ useraction.addEventListener("click", (event) => {
 
     //filtre
     if (event.target.id == "all") {
-      
+
+        btnfilter = "all"
         affichage(matches, matchliste, template);
 
         // add color of the backround:
@@ -318,12 +327,10 @@ useraction.addEventListener("click", (event) => {
         });
         event.target.classList.add("bg-[#1eba5f]");
 
-
     } else if (event.target.id == "upcoming") {
 
-        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() > new Date().getTime());
-
-        affichage(result, matchliste, template);
+        btnfilter = "upcoming"
+        affichage(matches, matchliste, template);
 
         // add color of the backround:
         document.querySelectorAll(".match-filter").forEach(element => {
@@ -332,10 +339,9 @@ useraction.addEventListener("click", (event) => {
         event.target.classList.add("bg-[#1eba5f]");
 
     } else if (event.target.id == "played") {
+        btnfilter = "played"
 
-
-        const result = matches.filter((matche) => new Date(`${matche.date}`).getTime() < new Date().getTime());
-        affichage(result, matchliste, template);
+        affichage(matches, matchliste, template);
 
         // add color of the backround:
         document.querySelectorAll(".match-filter").forEach(element => {
@@ -350,3 +356,4 @@ useraction.addEventListener("click", (event) => {
 
 
 
+console.log(matches);

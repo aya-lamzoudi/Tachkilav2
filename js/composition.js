@@ -1,7 +1,6 @@
 
 
 
-
 export function pitch(players) {
     //reset all html to none:
 
