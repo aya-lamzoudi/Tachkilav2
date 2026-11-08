@@ -16,32 +16,39 @@
 <body class="bg-[#0F172A]">
 
     <!-- start header -->
-    <header>
-        <div
-            class="header-container flex justify-between items-center px-5 max-[767px]:p-1 h-[50px] bg-[#1E293B] border-b border-solid border-gray-500">
-            <div class=" logo flex gap-2  items-center">
-                <img src="img/logo.jpg" alt="logo" class="w-[30px] h-[30px] rounded-full">
 
-                <p class="text-gray-50 font-bold ">TACHKILA</p>
+
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="header-container flex justify-between items-center px-5 h-[50px] bg-[#1E293B] border-b border-gray-500
+                max-[767px]:flex-wrap max-[767px]:h-auto max-[767px]:px-2 max-[767px]:py-2">
+
+            <!-- Logo -->
+            <div class="logo flex gap-2 items-center shrink-0">
+                <img src="img/logo.jpg" alt="logo" class="w-[30px] h-[30px] rounded-full">
+                <p class="text-gray-50 font-bold max-[767px]:hidden">TACHKILA</p>
             </div>
 
-            <nav class="navbar h-[40px] flex items-center  ">
-                <ul
-                    class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
-                    <li class="text-xs flex self-center rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 ">
+            <!-- Navigation -->
+            <nav class="navbar h-[40px] flex items-center">
+                <ul class="h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A]
+                       max-[767px]:w-auto">
+                    <li class="text-xs flex self-center rounded-lg px-3 py-2 font-semibold hover:bg-slate-800">
                         <a href="index.html">Effectif</a>
                     </li>
+
                     <li class="rounded-lg px-4 py-2 font-semibold text-xs hover:bg-slate-800">
-                        <a href="composition.html">composition</a>
+                        <a href="composition.html">Composition</a>
                     </li>
+
                     <li class="rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs bg-[#1eba5f]">
-                        <a href="matchs.html">matches</a>
+                        <a href="matchs.html">Matches</a>
                     </li>
                 </ul>
             </nav>
 
-            <div class="position-legend">
-                <ul class="flex gap-2 max-[767px]:grid max-[767px]:grid-cols-2 max-[767px]:gap-1 ">
+            <!-- Legend -->
+            <div class="position-legend flex justify-center max-[767px]:mt-4 max-[448px]:w-full">
+                <ul class="flex gap-2">
                     <li class="text-xs text-orange-400 flex gap-1">
                         <span class="w-2 h-2 bg-orange-400 rounded-full self-center"></span>GB
                     </li>
@@ -58,13 +65,14 @@
             </div>
 
         </div>
-
     </header>
+
+
     <!-- end header -->
     <!-- start main section -->
 
 
-    <main class="min-h-screen bg-[#0F172A] text-white">
+    <main class="min-h-screen bg-[#0F172A] text-white  pt-[50px] max-[767px]:pt-[100px]">
 
         <div class="matches-page mx-4 flex flex-col gap-6 py-5 md:mx-10">
 
@@ -124,15 +132,15 @@
                 <div class="match-filters flex items-center gap-1 rounded-xl bg-[#0F172A] p-2">
                     <button type="button" id="all"
                         class="match-filter rounded-lg bg-[#1eba5f] px-6 py-2 font-bold text-xs hover:bg-slate-800">
-                        Tous 
+                        Tous
                     </button>
                     <button type="button" id="upcoming"
                         class="match-filter rounded-lg px-6 py-2 font-bold hover:bg-slate-800 text-xs">
-                        À venir 
+                        À venir
                     </button>
                     <button type="button" id="played"
                         class="match-filter rounded-lg px-6 py-2 font-semibold hover:bg-slate-800 text-xs">
-                        Joués 
+                        Joués
                     </button>
                 </div>
 
@@ -397,7 +405,7 @@
                                 status
                             </legend>
 
-                            <select id="venue" 
+                            <select id="venue"
                                 class="player-status col-span-full w-[96%] m-auto border rounded-[10px] px-4 py-2 border-mist-700 bg-[#1E293B]">
                                 <option disabled selected value=""
                                     class="flex min-h-12 items-center justify-center rounded-xl border border-slate-700 bg-[#0F172A] px-2 text-center text-sm text-slate-300  peer-checked:border-amber-400 peer-checked:bg-amber-400/10 peer-checked:text-amber-300">

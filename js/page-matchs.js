@@ -259,7 +259,6 @@ editform.addEventListener("submit", function (event) {
 
 
 
-
 //saisir le score :
 
 scoreform.addEventListener("submit", (e) => {

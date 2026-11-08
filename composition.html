@@ -16,53 +16,65 @@
 <body class="">
 
     <!-- start header -->
-    <header>
-        <div
-            class="header-container flex justify-between items-center px-5 max-[767px]:p-1 h-[50px] bg-[#1E293B] border-b border-solid border-gray-500">
-            <div class=" logo flex gap-2  items-center">
-                <img src="img/logo.jpg" alt="logo" class="w-[30px] h-[30px] rounded-full">
 
-                <p class="text-gray-50 font-bold ">TACHKILA</p>
+
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="header-container flex justify-between items-center gap-2 px-5 h-[50px] bg-[#1E293B] border-b border-gray-500
+                max-[767px]:flex-wrap max-[767px]:h-auto max-[767px]:px-2 max-[767px]:py-2">
+
+            <!-- Logo -->
+            <div class="logo flex gap-2 items-center shrink-0">
+                <a href="index.html">
+                    <img src="img/logo.jpg" alt="logo" class="w-[30px] h-[30px] rounded-full">
+                </a>
+                <p class="text-gray-50 font-bold max-[767px]:hidden">TACHKILA</p>
             </div>
 
-            <nav class="navbar h-[40px] flex items-center  ">
-                <ul
-                    class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
-                    <li class="text-xs flex self-center rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 ">
+            <!-- Navigation -->
+            <nav class="navbar flex items-center min-w-0">
+                <ul class="flex items-center justify-around gap-1 rounded-xl bg-[#0F172A] p-1 max-[767px]:gap-0">
+                    <li class="rounded-lg px-3 py-2 text-xs font-semibold hover:bg-slate-800">
                         <a href="index.html">Effectif</a>
                     </li>
-                    <li class="active rounded-lg bg-[#1eba5f] px-4 py-2 font-semibold text-xs hover:bg-slate-800">
-                        <a href="composition.html">composition</a>
+
+                    <li class="active rounded-lg bg-[#1eba5f] px-3 py-2 text-xs font-semibold hover:bg-slate-800">
+                        <a href="composition.html">Composition</a>
                     </li>
-                    <li class="rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">
-                        <a href="matchs.html">matches</a>
+
+                    <li class="rounded-lg px-3 py-2 text-xs font-semibold hover:bg-slate-800">
+                        <a href="matchs.html">Matches</a>
                     </li>
                 </ul>
             </nav>
-            <div class="position-legend">
-                <ul class="flex gap-2 max-[767px]:grid max-[767px]:grid-cols-2 max-[767px]:gap-1 ">
-                    <li class="text-xs text-orange-400 flex gap-1">
-                        <span class="w-2 h-2 bg-orange-400 rounded-full self-center"></span>GB
+
+            <!-- Position Legend -->
+            <div class="position-legend flex justify-center shrink-0
+                    max-[767px]:w-full max-[767px]:mt-2">
+                <ul class="flex gap-2">
+                    <li class="flex items-center gap-1 text-xs text-orange-400">
+                        <span class="w-2 h-2 bg-orange-400 rounded-full"></span>GB
                     </li>
-                    <li class="text-xs text-[#3AC8EF] flex gap-1">
-                        <span class="w-2 h-2 bg-[#3AC8EF] rounded-full self-center"></span>DEF
+                    <li class="flex items-center gap-1 text-xs text-[#3AC8EF]">
+                        <span class="w-2 h-2 bg-[#3AC8EF] rounded-full"></span>DEF
                     </li>
-                    <li class="text-xs text-[#20D244] flex gap-1">
-                        <span class="w-2 h-2 bg-[#20D244] rounded-full self-center"></span>MIL
+                    <li class="flex items-center gap-1 text-xs text-[#20D244]">
+                        <span class="w-2 h-2 bg-[#20D244] rounded-full"></span>MIL
                     </li>
-                    <li class="text-xs text-[#D75241] flex gap-1">
-                        <span class="w-2 h-2 bg-[#D75241] rounded-full self-center"></span>ATT
+                    <li class="flex items-center gap-1 text-xs text-[#D75241]">
+                        <span class="w-2 h-2 bg-[#D75241] rounded-full"></span>ATT
                     </li>
                 </ul>
             </div>
 
         </div>
-
     </header>
+
+
     <!-- end header -->
     <!-- start main section -->
     <main>
-        <div class="main-container flex lg:flex-row bg-[#0F172A] md:flex-col max-[767px]:flex-col">
+        <div
+            class="main-container flex lg:h-screen lg:flex-row bg-[#0F172A] md:flex-col max-[767px]:flex-col pt-[50px] max-[767px]:pt-[100px]">
             <!-- THR SIDE BAR -->
 
             <aside class="sidebar overflow-y-auto max-h-[100vh] bg-[#1E293B]">
@@ -85,7 +97,7 @@
 
             <!-- The terrain -->
 
-            <section class="pitch-section min-w-0 flex-1 overflow-x-auto ">
+            <section class="pitch-section min-w-0 flex-1 overflow-x-auto lg:my-6">
                 <div class="pitch-scroll w-full ">
 
                     <div class="football-pitch min-w-[800px] shrink-0">

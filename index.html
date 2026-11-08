@@ -16,33 +16,37 @@
 <body class="">
 
     <!-- start header -->
-    <header>
-        <div
-            class="header-container flex justify-between items-center px-5 max-[767px]:p-1 h-[50px] bg-[#1E293B] border-b border-solid border-gray-500">
-            <div class=" logo flex gap-2  items-center">
-                <img src="img/logo.jpg" alt="logo" class="w-[30px] h-[30px] rounded-full">
 
-                <p class="text-gray-50 font-bold ">TACHKILA</p>
+
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="header-container flex justify-between items-center px-5 h-[50px] bg-[#1E293B] border-b border-gray-500
+                max-[767px]:flex-wrap max-[767px]:h-auto max-[767px]:px-2 max-[767px]:py-2">
+
+            <!-- Logo -->
+            <div class="logo flex gap-2 items-center shrink-0">
+                <img src="img/logo.jpg" alt="logo" class="w-[30px] h-[30px] rounded-full">
+                <p class="text-gray-50 font-bold max-[767px]:hidden">TACHKILA</p>
             </div>
 
-            <nav class="navbar h-[40px] flex items-center  ">
-                <ul
-                    class=" h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A] shrink-1">
-                    <li
-                        class=" active text-xs flex self-center bg-[#1eba5f] rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 ">
+            <!-- Navigation -->
+            <nav class="navbar h-[40px] flex items-center">
+                <ul class="h-full w-[300px] flex flex-wrap items-center justify-around gap-1 rounded-xl bg-[#0F172A]
+                       max-[767px]:w-auto ">
+                    <li class="active text-xs bg-[#1eba5f] rounded-lg px-3 py-2 font-semibold hover:bg-slate-800">
                         <a href="index.html">Effectif</a>
                     </li>
-                    <li class=" rounded-lg px-4 py-2 font-semibold text-xs hover:bg-slate-800">
-                        <a href="composition.html">composition</a>
+                    <li class="rounded-lg px-4 py-2 font-semibold text-xs hover:bg-slate-800">
+                        <a href="composition.html">Composition</a>
                     </li>
-                    <li class="rounded-lg px-3 py-2 font-semibold hover:bg-slate-800 text-xs">
-                        <a href="matchs.html">matches</a>
+                    <li class="rounded-lg px-3 py-2 font-semibold text-xs hover:bg-slate-800">
+                        <a href="matchs.html">Matches</a>
                     </li>
                 </ul>
             </nav>
 
-            <div class="position-legend">
-                <ul class="flex gap-2 max-[767px]:grid max-[767px]:grid-cols-2 max-[767px]:gap-1 ">
+            <!-- Legend -->
+            <div class="position-legend flex justify-center max-[767px]:mt-4 max-[448px]:w-full ">
+                <ul class="flex gap-2">
                     <li class="text-xs text-orange-400 flex gap-1">
                         <span class="w-2 h-2 bg-orange-400 rounded-full self-center"></span>GB
                     </li>
@@ -59,11 +63,12 @@
             </div>
 
         </div>
-
     </header>
+
+
     <!-- end header -->
     <!-- start main section -->
-    <main class="min-h-screen bg-[#0F172A] text-white">
+    <main class="min-h-screen bg-[#0F172A] text-white pt-[50px] max-[767px]:pt-[100px]">
         <div class="roster-page mx-auto flex max-w-[1600px] flex-col gap-6 px-4 py-6 md:px-8">
 
             <section class="header-effective">
@@ -78,32 +83,33 @@
                     </button>
                 </div>
                 <div
-                    class="statistique grid lg:grid-cols-4 my-6  gap-3 justify-between items-center min-[481px]:grid-cols-4 max-[480px]:grid-cols-2">
+                    class="statistique grid lg:grid-cols-4 my-6  gap-3 justify-between items-center min-[481px]:grid-cols-2 max-[480px]:grid-cols-2">
                     <div class="total bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
                         <p class="text-slate-400">TOTAL EFFECTIF</p>
                         <span class="totale-nbr text-3xl font-bold">
                             0
                         </span>
                     </div>
-                    <div class="form bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[0px]">
+                    <div class="form bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
                         <p class="text-slate-400 ">EN FORME</p>
                         <span class="form-nbr text-3xl font-bold">
                             0
                         </span>
                     </div>
-                    <div class="blesee bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[0px]">
+                    <div class="blesee bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
                         <p class="text-slate-400">BLESSES</p>
                         <span class="blesse-nbr text-3xl font-bold">
                             0
                         </span>
                     </div>
-                    <div class="age bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[0px]">
+                    <div class="age bg-[#1E293B] h-27 flex flex-col justify-center gap-3 p-3 rounded-[15px]">
                         <p class="text-slate-400">AGE MOYEN</p>
                         <span class="age-moyen text-3xl font-bold">
                             0
                         </span>
                     </div>
                 </div>
+
 
             </section>
 
