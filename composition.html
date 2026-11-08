@@ -72,9 +72,8 @@
 
     <!-- end header -->
     <!-- start main section -->
-    <main>
-        <div
-            class="main-container flex lg:h-screen lg:flex-row bg-[#0F172A] md:flex-col max-[767px]:flex-col pt-[50px] max-[767px]:pt-[100px]">
+    <main class="min-h-screen bg-[#0F172A] text-white pt-[50px] max-[767px]:pt-[90px] ">
+        <div class="main-container flex lg:h-screen lg:flex-row bg-[#0F172A] md:flex-col max-[767px]:flex-col">
             <!-- THR SIDE BAR -->
 
             <aside class="sidebar overflow-y-auto max-h-[100vh] bg-[#1E293B]">
@@ -97,12 +96,13 @@
 
             <!-- The terrain -->
 
-            <section class="pitch-section min-w-0 flex-1 overflow-x-auto lg:my-6">
+            <section class="pitch-section min-w-0 flex-1 overflow-x-auto lg:pt-6 ">
                 <div class="pitch-scroll w-full ">
 
                     <div class="football-pitch min-w-[800px] shrink-0">
                         <!-- player in pitch -->
-                        <div class="GB terrain-position flex gap-1 justify-center">
+                        <div class="GB terrain-position flex gap-1 justify-center" data-position="GB"
+                            data-post="Gardien">
                             <div class="number hidden">
                                 0
                             </div>
@@ -111,7 +111,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="DG terrain-position flex gap-1 justify-center">
+                        <div class="DG terrain-position flex gap-1 justify-center" data-position="DG"
+                            data-post="Defenseur">
                             <div
                                 class="number w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF] hidden">
                                 0 </div>
@@ -120,7 +121,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="DC1 terrain-position flex gap-1 justify-center">
+                        <div class="DC1 terrain-position flex gap-1 justify-center" data-position="DC1"
+                            data-post="Defenseur">
                             <div
                                 class="number w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF] hidden">
                                 0</div>
@@ -129,7 +131,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="DC2 terrain-position flex gap-1 justify-center">
+                        <div class="DC2 terrain-position flex gap-1 justify-center" data-position="DC2"
+                            data-post="Defenseur">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF]">
                                 0</div>
@@ -138,7 +141,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="DD terrain-position flex gap-1 justify-center">
+                        <div class="DD terrain-position flex gap-1 justify-center" data-position="DD"
+                            data-post="Defenseur">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#3AC8EF] rounded-full text-center self-center p-[5px] text-[#3AC8EF]">
                                 0</div>
@@ -147,7 +151,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="MG terrain-position flex gap-1 justify-center">
+                        <div class="MG terrain-position flex gap-1 justify-center" data-position="MG"
+                            data-post="Milieu">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
                                 0</div>
@@ -156,7 +161,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="MC1 terrain-position flex gap-1 justify-center">
+                        <div class="MC1 terrain-position flex gap-1 justify-center" data-position="MC1"
+                            data-post="Milieu">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
                                 0</div>
@@ -165,7 +171,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="MC2 terrain-position flex gap-1 justify-center">
+                        <div class="MC2 terrain-position flex gap-1 justify-center" data-position="MC2"
+                            data-post="Milieu">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
                                 0</div>
@@ -174,7 +181,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="MD terrain-position flex gap-1 justify-center">
+                        <div class="MD terrain-position flex gap-1 justify-center" data-position="MD"
+                            data-post="Milieu">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#20D244] rounded-full text-center self-center p-[5px] text-[#20D244]">
                                 0</div>
@@ -183,7 +191,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="BU1 terrain-position flex gap-1 justify-center">
+                        <div class="BU1 terrain-position flex gap-1 justify-center" data-position="BU1"
+                            data-post="Attaquant">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#D75241] rounded-full text-center self-center p-[5px] text-[#D75241]">
                                 0</div>
@@ -192,7 +201,8 @@
                                 <div class="player-name-position font-bold text-white">libre</div>
                             </div>
                         </div>
-                        <div class="BU2 terrain-position flex gap-1 justify-center">
+                        <div class="BU2 terrain-position flex gap-1 justify-center" data-position="BU2"
+                            data-post="Attaquant">
                             <div
                                 class="number hidden w-[25px] h-[25px] border border-solid border-[#D75241] rounded-full text-center self-center p-[5px] text-[#D75241]">
                                 0</div>
@@ -332,18 +342,7 @@
             </div>
             <select value="bench"
                 class="player-position-select w-[96%] m-auto border rounded-[10px] border-mist-700 bg-[#1E293B]">
-                <option value="bench" selected>Sur le banc</option>
-                <option value="GB">GB - Gardien</option>
-                <option value="DG">DG - Défenseur gauche</option>
-                <option value="DC1">DC - Défenseur central 1</option>
-                <option value="DC2">DC - Défenseur central 2</option>
-                <option value="DD">DD - Défenseur droit</option>
-                <option value="MG">MG - Milieu gauche</option>
-                <option value="MC1">MC - Milieu central 1</option>
-                <option value="MC2">MC - Milieu central 2</option>
-                <option value="MD">MD - Milieu droit</option>
-                <option value="BU1">BU - Buteur 1</option>
-                <option value="BU2">BU - Buteur 2</option>
+
             </select>
         </div>
     </template>

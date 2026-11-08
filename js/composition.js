@@ -26,7 +26,7 @@ export function pitch(players) {
 
             let path = document.querySelector(`.${player.position}`);
             if (path) {
-
+                path.draggable = true;
                 path.querySelector(".player-name-position").innerText = player.nom
                 path.querySelector(".number").innerText = player.numero;
                 path.querySelector(".number").classList.remove("hidden");
@@ -100,6 +100,7 @@ export function affichage(players, liste, template) {
             card.querySelector("select").innerHTML = `
                    <option value="bench" disabled selected>can't be on the bitch</option>
                   `
+            // card.draggable = false;      
         }
 
         card.classList.remove("hidden")
