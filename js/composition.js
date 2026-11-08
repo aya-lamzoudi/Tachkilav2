@@ -3,7 +3,9 @@
 
 export function pitch(players) {
     //reset all html to none:
-
+    document.querySelectorAll(".terrain-position").forEach(element => {
+        element.draggable = false
+    })
     document.querySelectorAll(".number").forEach(element => {
         element.innerHTML = "";
         element.classList.add("hidden");
@@ -25,6 +27,7 @@ export function pitch(players) {
         if (player.position != "bench") {
 
             let path = document.querySelector(`.${player.position}`);
+
             if (path) {
                 path.draggable = true;
                 path.querySelector(".player-name-position").innerText = player.nom

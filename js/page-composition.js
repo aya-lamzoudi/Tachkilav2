@@ -125,11 +125,13 @@ terrain.addEventListener("drop", (e) => {
                     if (players[i].status == "En blesse") {
                         console.log("heey")
                         showError("you can't place a blesse player in the pitch")
+                    } else {
+                        showsuccess("the player is placed successfully")
                     }
                     break;
                 }
             }
-            showsuccess("the player is placed successfully")
+
         } else {
             showError("this move can't be happen")
         }
